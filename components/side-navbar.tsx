@@ -1,6 +1,15 @@
 "use client";
 
-import { Home, User, Mail, Moon, Sun, Share2,FolderGit2, X } from "lucide-react";
+import {
+  Home,
+  User,
+  Mail,
+  Moon,
+  Sun,
+  Share2,
+  FolderGit2,
+  X,
+} from "lucide-react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -11,7 +20,6 @@ import {
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -78,6 +86,8 @@ export default function Navbar() {
                   key={index}
                   href={item.href}
                   className="p-2 hover:opacity-70 transition"
+                  aria-label={item.label}
+                  title={item.label}
                 >
                   {item.icon}
                 </Link>
@@ -89,6 +99,8 @@ export default function Navbar() {
                   onClick={() => setIsSocialDesktop(!isSocialDesktop)}
                   className="p-2 hover:opacity-70 transition"
                   aria-expanded={isSocialDesktop}
+                  aria-label="Social Media Links"
+                  title="Social Media"
                 >
                   <Share2 size={22} />
                 </button>
@@ -104,6 +116,8 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 hover:opacity-70 transition"
+                      aria-label={link.label}
+                      title={link.label}
                     >
                       {link.icon}
                     </Link>
@@ -142,6 +156,8 @@ export default function Navbar() {
             key={index}
             href={item.href}
             className="flex flex-col items-center hover:scale-110 transition"
+            aria-label={item.label}
+            title={item.label}
           >
             {item.icon}
           </Link>
@@ -160,7 +176,8 @@ export default function Navbar() {
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="hover:scale-110 transition"
         >
-          {mounted && (theme === "dark" ? <Sun size={22} /> : <Moon size={22} />)}
+          {mounted &&
+            (theme === "dark" ? <Sun size={22} /> : <Moon size={22} />)}
         </button>
       </div>
 
@@ -188,6 +205,8 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:scale-110 transition"
+                  aria-label={link.label}
+                  title={link.label}
                 >
                   {link.icon}
                 </Link>

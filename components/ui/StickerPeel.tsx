@@ -42,6 +42,22 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
       return;
     }
 
+    // Animasi wiggle awal untuk memberi tahu pengguna bahwa stiker interaktif
+    gsap.fromTo(
+      target,
+      { rotation: -5 },
+      {
+        rotation: 5,
+        duration: 0.2,
+        repeat: 5,
+        yoyo: true,
+        ease: "power1.inOut",
+        onComplete: () => {
+          gsap.to(target, { rotation: 0, duration: 0.5 });
+        },
+      },
+    );
+
     const draggable = Draggable.create(target, {
       type: "x,y",
       inertia: true,

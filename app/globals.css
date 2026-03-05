@@ -147,9 +147,7 @@
   }
 }
 
-* {
-  cursor: none !important;
-}
+/* cursor: none dihapus untuk aksesibilitas */
 
 body {
   font-family: var(--font-montserrat), sans-serif;
