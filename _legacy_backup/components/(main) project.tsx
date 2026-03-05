@@ -78,11 +78,7 @@ export default function Project() {
         { label: "Role", value: "Front-end Developer" },
       ],
       links: [
-        {
-          label: "Live Demo",
-          icon: <ArrowUpRight size={16} />,
-          href: "/Intermezo/DraftTA#draft",
-        },
+        { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "/DraftTA#draft" },
         { label: "See on GitHub", icon: <Github size={16} />, href: "#" },
       ],
     },
@@ -110,85 +106,83 @@ export default function Project() {
   return (
     <>
       <section
-        id="projects"
-        className="bg-gray-100 text-neutral-900 dark:bg-black dark:text-white px-4 pt-16
+      id="projects"
+      className="bg-gray-100 text-neutral-900 dark:bg-black dark:text-white px-4 pt-16
 "
-      >
-        <h2 className="max-w-6xl mx-auto text-2xl font-bold md:text-3xl lg:text-4xl mb-10">
-          My Projects 🧑‍💻
-        </h2>
+    >
+      <h2 className="max-w-6xl mx-auto text-2xl font-bold md:text-3xl lg:text-4xl mb-10">
+        My Projects 🧑‍💻
+      </h2>
 
-        <div className="max-w-6xl mx-auto space-y-8 md:space-y-24">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-12 md:items-center"
-            >
-              {/* Video looping + lazy load */}
-              <div className="relative">
-                {project.tag && (
-                  <span className="absolute top-4 left-4 bg-neutral-300/80 text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-300 text-xs px-3 py-1 rounded-full">
-                    {project.tag}
-                  </span>
-                )}
-                <div className="bg-neutral-200 dark:bg-neutral-900 p-3 rounded-xl flex items-center justify-center">
-                  <LazyVideo video={project.video} alt={project.title} />
-                </div>
+      <div className="max-w-6xl mx-auto space-y-8 md:space-y-24">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-12 md:items-center"
+          >
+            {/* Video looping + lazy load */}
+            <div className="relative">
+              {project.tag && (
+                <span className="absolute top-4 left-4 bg-neutral-300/80 text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-300 text-xs px-3 py-1 rounded-full">
+                  {project.tag}
+                </span>
+              )}
+              <div className="bg-neutral-200 dark:bg-neutral-900 p-3 rounded-xl flex items-center justify-center">
+                <LazyVideo video={project.video} alt={project.title} />
               </div>
+            </div>
 
-              {/* Text Section */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                  {project.title}
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed text-sm md:text-base">
-                  {project.description}
-                </p>
+            {/* Text Section */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-semibold mb-4">
+                {project.title}
+              </h3>
+              <p className="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed text-sm md:text-base">
+                {project.description}
+              </p>
 
-                <div className="mb-6">
-                  <h4 className="text-sm text-neutral-500 tracking-wide mb-2">
-                    PROJECT INFO
-                  </h4>
-                  <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-                    {project.info.map((item, i) => (
-                      <div
-                        key={i}
-                        className="flex justify-between py-2 text-neutral-700 dark:text-neutral-300 text-sm"
-                      >
-                        <span>{item.label}</span>
-                        <span>{item.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  {project.links.map((link, i) => (
-                    <a
+              <div className="mb-6">
+                <h4 className="text-sm text-neutral-500 tracking-wide mb-2">
+                  PROJECT INFO
+                </h4>
+                <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+                  {project.info.map((item, i) => (
+                    <div
                       key={i}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-lime-600 dark:text-lime-400 hover:underline text-sm transition-colors duration-300"
+                      className="flex justify-between py-2 text-neutral-700 dark:text-neutral-300 text-sm"
                     >
-                      {link.label} {link.icon}
-                    </a>
+                      <span>{item.label}</span>
+                      <span>{item.value}</span>
+                    </div>
                   ))}
                 </div>
               </div>
+
+              <div className="space-y-2">
+                {project.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-lime-600 dark:text-lime-400 hover:underline text-sm transition-colors duration-300"
+                  >
+                    {link.label} {link.icon}
+                  </a>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-        <center>
-          <Button
-            variant="outline"
-            className="mt-12 md:mt-16 justify-center rounded-full"
-            onClick={() => (window.location.href = "#about")}
-          >
-            More about me <ArrowUpRight size={16} />
-          </Button>
-        </center>
-      </section>
+          </div>
+        ))}
+      </div>
+      <center>
+<Button variant="outline" className="mt-12 md:mt-16 justify-center rounded-full" onClick={() => window.location.href = "/about"}>
+      More about me <ArrowUpRight size={16} />
+    </Button>
+    </center>
+    </section>
+    
+    
     </>
   );
 }
@@ -207,7 +201,7 @@ function LazyVideo({
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => setIsVisible(entries[0].isIntersecting),
-      { threshold: 0.25 },
+      { threshold: 0.25 }
     );
 
     if (videoRef.current) observer.observe(videoRef.current);

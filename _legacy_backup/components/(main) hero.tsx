@@ -18,12 +18,7 @@ export default function Hero() {
     stickerSatu: { x: number; y: number } | null;
     stickerTiga: { x: number; y: number } | null;
     stickerEmpat: { x: number; y: number } | null;
-  }>({
-    stickerDua: null,
-    stickerSatu: null,
-    stickerTiga: null,
-    stickerEmpat: null,
-  });
+  }>({ stickerDua: null, stickerSatu: null, stickerTiga: null, stickerEmpat: null });
 
   // Efek untuk ScrollTrigger (tidak diubah)
   useEffect(() => {
@@ -45,88 +40,89 @@ export default function Hero() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        // MOBILE
-        setStickerPositions({
-          stickerSatu: {
-            x: 0,
-            y: -700,
-          },
-          stickerDua: {
-            x: 0,
-            y: -200,
-          },
-          stickerTiga: {
-            x: 0,
-            y: 150,
-          },
-          stickerEmpat: {
-            x: 0,
-            y: -700,
-          },
-        });
-      } else if (769 <= window.innerWidth && window.innerWidth <= 1024) {
-        // TABLET
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 350,
-            y: -200,
-          },
-        });
-      } else if (1025 <= window.innerWidth && window.innerWidth <= 1440) {
-        // DESKTOP KECIL
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 370,
-            y: -200,
-          },
-        });
-      } else {
-        // DESKTOP BESAR
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 370,
-            y: -200,
-          },
-        });
+  if (window.innerWidth <= 768) {
+    // MOBILE
+    setStickerPositions({
+      stickerSatu: { 
+        x: 0,
+        y: - 700
+      },
+      stickerDua: { 
+        x: 0,
+        y: -200
+      },
+      stickerTiga: {
+        x: 0,
+        y: 150
+      },
+      stickerEmpat: {
+        x: 0,
+        y: -700
       }
-    };
+    });
+  } else if (769 <= window.innerWidth && window.innerWidth <= 1024) {
+    // TABLET
+    setStickerPositions({
+      stickerSatu: { 
+        x: -350, 
+        y: -200 
+      },
+      stickerDua: { 
+        x: 400, 
+        y: 200 
+      },
+      stickerTiga: {
+        x: -350,
+        y: 200
+      },
+      stickerEmpat: {
+        x: 350,
+        y: -200
+      }
+    });
+  } else if (1025 <= window.innerWidth && window.innerWidth <= 1440) {
+    // DESKTOP KECIL
+    setStickerPositions({
+      stickerSatu: { 
+        x: -350, 
+        y: -200 
+      },
+      stickerDua: { 
+        x: 400, 
+        y: 200 
+      },
+      stickerTiga: {
+        x: -350,
+        y: 200
+      },
+      stickerEmpat: {
+        x: 370,
+        y: -200
+      }
+    });
+  } else {
+    // DESKTOP BESAR
+    setStickerPositions({
+      stickerSatu: { 
+        x: -350, 
+        y: -200
+      },
+      stickerDua: { 
+        x: 400, 
+        y: 200
+      },
+      stickerTiga: {
+        x: -350,
+        y: 200
+      },
+      stickerEmpat: {
+        x: 370,
+        y: -200
+      }
+    });
+  }
+};
+
 
     // Panggil sekali saat komponen dimuat
     handleResize();
@@ -141,6 +137,7 @@ export default function Hero() {
   return (
     <>
       <section
+        
         ref={heroRef}
         className="w-full min-h-screen flex items-center justify-center bg-white dark:bg-[#121212] py-32 md:py-48 relative overflow-hidden" // Tambahkan overflow-hidden
       >
@@ -171,11 +168,11 @@ export default function Hero() {
             className="z-12"
           />
         )}
-        {stickerPositions.stickerEmpat && (
+        {stickerPositions.stickerTiga && (
           <StickerBounce
             imageSrc="/sticker4.svg"
             width={350}
-            initialPosition={stickerPositions.stickerEmpat} // <-- MENGGUNAKAN STATE2
+            initialPosition={stickerPositions.stickerEmpat || undefined} // <-- MENGGUNAKAN STATE2
             className="z-12"
           />
         )}
@@ -191,18 +188,21 @@ export default function Hero() {
             >
               Hi dude!!
             </h1>
+            
           </div>
-
-          <WordRotate
-            className="text-2xl text-black dark:text-neutral-300 mt-4"
-            words={[
-              "Welcome 🙌",
-              "scroll slowly 🐢",
-              "drag the sticker 🏷️",
-              "mewing 🤫🧏‍♂️",
-            ]}
-          />
+          
+            <WordRotate
+              className="text-2xl text-black dark:text-neutral-300 mt-4"
+              words={[
+                "Welcome 🙌",
+                "scroll slowly 🐢",
+                "drag the sticker 🏷️",
+                "mewing 🤫🧏‍♂️"
+              ]}
+            />
+        
         </div>
+        
       </section>
     </>
   );
