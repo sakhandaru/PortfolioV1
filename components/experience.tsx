@@ -2,30 +2,48 @@
 
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/ux/marquee";
+import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 // Impor ikon dari lucide-react sudah dihapus karena tidak lagi digunakan
 
 // Data pengalaman kerja dengan properti logoUrl untuk gambar
-const workExperience = [
+export const workExperience = [
   {
-    logoUrl: "/experience/doscom.svg", // Ganti dengan path logo Anda
-    title: "Chairman of DOSCOM",
+    logoUrl: "/experience/duta.png", // Ganti dengan path logo Duta Pelajar jika ada
+    title: "Duta Pelajar Jepara",
+    dateRange: "2022 – 2023",
+    duration: "1 year",
+    description:
+      "Mewakili pelajar Kabupaten Jepara dalam berbagai inisiatif pendidikan, kebudayaan, dan pengembangan karakter di tingkat daerah.",
+  },
+  {
+    logoUrl: "/experience/nasima.png", // Ganti dengan path logo Nasima jika ada
+    title: "Ketua Pengurus Asrama Nasima",
+    dateRange: "2023 – 2024",
+    duration: "1 year",
+    description:
+      "Mengatur kedisiplinan, koordinasi program asrama, dan memimpin keseharian anggota asrama Nasima dengan fokus pada pembinaan karakter.",
+  },
+  {
+    logoUrl: "/experience/doscom.svg",
+    title: "Ketua Umum DOSCOM",
     dateRange: "Jan, 2024 – Jan, 2025",
     duration: "1 year",
     description:
       "Memimpin komunitas open-source terbesar di Jawa Tengah, mengarahkan inisiatif pengembangan, dan membina pertumbuhan lebih dari 200 anggota aktif.",
   },
   {
-    logoUrl: "/experience/ppko.svg", // Ganti dengan path logo Anda
-    title: "Team Lead for IoT Community Project (PPKO)",
+    logoUrl: "/experience/ppko.svg",
+    title: "Ketua Tim PPKO",
     dateRange: "May, 2024 – Aug, 2024",
     duration: "4 months",
     description:
       "Mempelopori proyek pengabdian masyarakat berbasis IoT, mengelola siklus hidup proyek dari konsep hingga implementasi untuk solusi komunitas yang inovatif.",
   },
   {
-    logoUrl: "/experience/tvku.png", // Ganti dengan path logo Anda
+    logoUrl: "/experience/tvku.png",
     title: "Frontend Developer at TVKU",
     dateRange: "Mar, 2025 – Jul, 2025",
     duration: "5 months",
@@ -33,7 +51,7 @@ const workExperience = [
       "Mengembangkan fitur antarmuka yang responsif dan berkinerja tinggi. Berkolaborasi dengan tim desain dan backend untuk menghadirkan pengalaman pengguna yang mulus.",
   },
   {
-    logoUrl: "/experience/mekanikace.svg", // Ganti dengan path logo Anda
+    logoUrl: "/experience/mekanikace.svg",
     title: "Marketing Analyst at PT. Mekanikace",
     dateRange: "Jan, 2024 – Nov, 2024",
     duration: "11 months",
@@ -41,7 +59,7 @@ const workExperience = [
       "Menganalisis tren pasar dan perilaku pengguna untuk menyusun strategi pemasaran berbasis data, berkontribusi pada peningkatan akuisisi pelanggan yang signifikan.",
   },
   {
-    logoUrl: "/experience/pprq.png", // Ganti dengan path logo Anda
+    logoUrl: "/experience/pprq.png",
     title: "Full Stack Web Developer at PPRQ Annasimiyah",
     dateRange: "Sep, 2024 – Feb, 2025",
     duration: "6 months",
@@ -49,7 +67,7 @@ const workExperience = [
       "Merancang dan menerapkan portal web komprehensif, mengelola pengembangan end-to-end (frontend & backend) untuk sistem manajemen internal.",
   },
   {
-    logoUrl: "/experience/rr.webp", // Ganti dengan path logo Anda
+    logoUrl: "/experience/rr.webp",
     title: "Web Developer at CV. ERDUA Digital Printing",
     dateRange: "Apr, 2023 – Dec, 2023",
     duration: "9 months",
@@ -57,28 +75,12 @@ const workExperience = [
       "Membangun dan memelihara solusi web e-commerce, menerjemahkan kebutuhan bisnis menjadi antarmuka pengguna yang fungsional dan menarik.",
   },
   {
-    logoUrl: "/experience/pprq.png", // Ganti dengan path logo Anda
+    logoUrl: "/experience/pprq.png",
     title: "IT Consultant at NU Online",
     dateRange: "Feb, 2024 – Dec, 2024",
     duration: "11 months",
     description:
       "Memberikan panduan strategis mengenai arsitektur teknologi dan transformasi digital, serta mengoptimalkan efisiensi dan keamanan sistem.",
-  },
-  {
-    logoUrl: "experience/unity logo.png", // Ganti dengan path logo Anda
-    title: "UNITY Web Dev Competition Finalist",
-    dateRange: "Oct, 2024",
-    duration: "Competition",
-    description:
-      "Meraih posisi finalis dengan mengembangkan aplikasi web fungsional di bawah tekanan waktu, menunjukkan keahlian dalam problem-solving dan pengembangan cepat.",
-  },
-  {
-    logoUrl: "/experience/dti.png", // Ganti dengan path logo Anda
-    title: "UI/UX DTI Competition Participant",
-    dateRange: "Sep, 2024",
-    duration: "Competition",
-    description:
-      "Merancang prototipe aplikasi yang berpusat pada pengguna (user-centric), mendapatkan pengakuan atas desain antarmuka yang inovatif dan intuitif.",
   },
 ];
 
@@ -103,13 +105,15 @@ const ReviewCard = ({
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
       )}
     >
       <div className="flex flex-row items-center gap-4">
-        <img
+        <Image
           src={logoUrl}
           alt={`Logo ${title}`}
+          width={56}
+          height={56}
           className="h-14 w-14 rounded-md object-cover" // Kelas untuk membuat gambar proporsional
         />
         <div className="flex flex-col">
@@ -135,7 +139,7 @@ export function MarqueeDemo() {
       <h2 className="text-2xl font-bold text-black dark:text-white md:text-3xl lg:text-4xl mb-6">
         My Experience 🧳
       </h2>
-  
+
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-10">
         <Marquee pauseOnHover className="[--duration:60s]">
           {workExperience.map((review) => (
@@ -146,11 +150,12 @@ export function MarqueeDemo() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-gray-100 to-transparent dark:from-black"></div>
       </div>
       <center>
-        <Button variant="outline" className="mb-6 rounded-full" onClick={() => window.location.href = "/About"}>
-          More about me <ArrowUpRight size={16} />
-      </Button>
+        <Button variant="outline" className="mb-6 rounded-full" asChild>
+          <Link href="/About">
+            More about me <ArrowUpRight size={16} />
+          </Link>
+        </Button>
       </center>
-      
     </>
   );
 }

@@ -15,11 +15,17 @@ export default function ContactSection() {
       {/* Top Section */}
       <div className="lg:mt-40 mt-30 flex flex-col sm:flex-row justify-between gap-4 text-xs sm:text-sm font-light">
         <div className="space-y-1 text-center sm:text-left">
-          <p id="contact" >Web & App Developer</p>
+          <p id="contact">Web & App Developer</p>
           <p>UI/UX, SaaS, Consultant</p>
         </div>
         <div className="text-center sm:text-right space-y-1">
-          <Link href="tel:+6287716632356" className="underline hover:opacity-70">(+62) 877-1663-2356</Link><br />
+          <Link
+            href="tel:+6287716632356"
+            className="underline hover:opacity-70"
+          >
+            (+62) 877-1663-2356
+          </Link>
+          <br />
           <Link href="#" className="underline hover:opacity-70">
             contact me
           </Link>
@@ -27,7 +33,7 @@ export default function ContactSection() {
       </div>
 
       {/* Center Big Name */}
-      <div className="flex items-center justify-center text-center">        
+      <div className="flex items-center justify-center text-center">
         {/* <img src="/logo.png" alt="Logo" className="w-32 h-32 lg:w-28 lg:h-28 mr-4" /> */}
         <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-none">
           Rifqis Sakha <br /> Hilmi Aziz
@@ -73,18 +79,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function SocialIcon({ icon, link }: { icon: React.ReactNode; link: string }) {
-  return (
-    <Link
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 border rounded-full hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors"
-    >
-      {icon}
-    </Link>
   );
 }

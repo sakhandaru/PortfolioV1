@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import ContactMe from "./(main) contact";
 import { RuningText } from "./runing-text";
 import Lanyard from "./ui/Lanyard";
-import { ArrowUp } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +16,7 @@ function PreviousSection() {
     <div className="bg-gray-100 text-gray-800 dark:bg-black dark:text-gray-100 flex flex-col justify-center items-center p-10">
       <RuningText />
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
-      <div className="flex flex-col items-center mt-8">
-      </div>
+      <div className="flex flex-col items-center mt-8"></div>
     </div>
   );
 }
@@ -27,34 +26,36 @@ export default function ContactReveal() {
   const previousSection = useRef<HTMLDivElement>(null);
   const contactSection = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        pin: true,
-        start: 'top top',
-        end: () => {
-          // Hitung tinggi PreviousSection + ContactMe + extra scroll
-          const extra = 300;
-          const contactHeight = contactSection.current?.offsetHeight || 0;
-          return `+=${window.innerHeight + contactHeight + extra}`;
+  useGSAP(
+    () => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: container.current,
+          pin: true,
+          start: "top top",
+          end: () => {
+            // Hitung tinggi PreviousSection + ContactMe + extra scroll
+            const extra = 300;
+            const contactHeight = contactSection.current?.offsetHeight || 0;
+            return `+=${window.innerHeight + contactHeight + extra}`;
+          },
+          scrub: 1,
+          // markers: true,
         },
-        scrub: 1,
-        // markers: true,
-      },
-    });
+      });
 
-    timeline.to(previousSection.current, {
-      yPercent: -100,
-      ease: 'none',
-    });
+      timeline.to(previousSection.current, {
+        yPercent: -100,
+        ease: "none",
+      });
 
-    // Refresh setelah semua asset & layout siap
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-
-  }, { scope: container });
+      // Refresh setelah semua asset & layout siap
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    },
+    { scope: container },
+  );
 
   return (
     <div ref={container} className="relative h-screen w-full overflow-hidden">

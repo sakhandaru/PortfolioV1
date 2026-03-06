@@ -22,12 +22,12 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   children: React.ReactNode;
 }
 
-const DEFAULT_SIZE = 40;
-const DEFAULT_MAGNIFICATION = 60;
+const DEFAULT_SIZE = 50;
+const DEFAULT_MAGNIFICATION = 80;
 const DEFAULT_DISTANCE = 140;
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto flex h-[58px] w-max items-center justify-center gap-1 rounded-2xl border-2 p-2 backdrop-blur-md",
+  "mx-auto flex h-max w-max items-center justify-center gap-4 p-2",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -83,8 +83,10 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
 Dock.displayName = "Dock";
 
-export interface DockIconProps
-  extends Omit<MotionProps & React.HTMLAttributes<HTMLDivElement>, "children"> {
+export interface DockIconProps extends Omit<
+  MotionProps & React.HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
   size?: number;
   magnification?: number;
   distance?: number;

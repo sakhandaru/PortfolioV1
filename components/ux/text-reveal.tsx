@@ -1,27 +1,23 @@
 "use client";
 
 import { motion, MotionValue, useScroll, useTransform } from "motion/react";
-import { ComponentPropsWithoutRef, FC, ReactNode, useEffect, useRef, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  FC,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { cn } from "@/lib/utils";
-import { MarqueeDemo } from "../experience";
-import { DockDemo } from "../techstack";
-import { Button } from "@/components/ui/button"
-import { ArrowUpRight } from "lucide-react";
-
+import { TechStackDock } from "../techstack";
 
 export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
   title?: string;
   children: string;
 }
 
-
-
-export const TextReveal: FC<TextRevealProps> = ({
-  title,
-  children,
-  className,
-}) => {
-  
+export const TextReveal: FC<TextRevealProps> = ({ title, children }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -33,26 +29,24 @@ export const TextReveal: FC<TextRevealProps> = ({
       const viewportHeight = window.innerHeight;
       setOffset(300 / viewportHeight); // Konversi 170px ke nilai 0-1
     };
-    
+
     calculateOffset();
-    window.addEventListener('resize', calculateOffset);
-    return () => window.removeEventListener('resize', calculateOffset);
+    window.addEventListener("resize", calculateOffset);
+    return () => window.removeEventListener("resize", calculateOffset);
   }, []);
 
   // Buat adjustedProgress dengan useTransform
   const adjustedProgress = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, 1 + offset] // Tambahkan offset di ujung range
+    [0, 1 + offset], // Tambahkan offset di ujung range
   );
-
 
   if (typeof children !== "string") {
     throw new Error("TextReveal: children must be a string");
   }
 
   const words = children.split(" ");
-  
 
   return (
     <div
@@ -88,15 +82,18 @@ export const TextReveal: FC<TextRevealProps> = ({
                 const start = i / words.length;
                 const end = start + 1 / words.length;
                 return (
-                  <Word key={i} progress={adjustedProgress} range={[start, end]}>
+                  <Word
+                    key={i}
+                    progress={adjustedProgress}
+                    range={[start, end]}
+                  >
                     {word}
                   </Word>
                 );
               })}
             </span>
           </div>
-          <MarqueeDemo />
-          <DockDemo />
+          <TechStackDock />
         </div>
       </div>
     </div>

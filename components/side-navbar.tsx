@@ -33,7 +33,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: "/#hero", icon: <Home size={22} />, label: "Home" },
-    { href: "/#about", icon: <User size={22} />, label: "About" },
+    { href: "/About", icon: <User size={22} />, label: "About" },
     { href: "/#projects", icon: <FolderGit2 size={22} />, label: "Projects" },
     // { href: "/#contact", icon: <Mail size={22} />, label: "Contact" },
   ];
