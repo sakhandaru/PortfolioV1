@@ -8,6 +8,7 @@ import {
   Share2,
   FolderGit2,
   X,
+  FileText,
 } from "lucide-react";
 import {
   FaInstagram,
@@ -77,6 +78,12 @@ export default function Navbar() {
 
   const socialLinks = [
     {
+      href: "/Rifqis_Sakha_CV.pdf",
+      icon: <FileText size={20} />,
+      label: "Download CV",
+      download: true,
+    },
+    {
       href: "https://wa.me/+6287716632356",
       icon: <FaWhatsapp size={20} />,
       label: "WhatsApp",
@@ -125,7 +132,7 @@ export default function Navbar() {
             isSocialOpen ? "max-w-0 opacity-0 md:max-w-0" : "max-w-[500px] opacity-100"
           }`}
         >
-          <div className="flex items-center pr-2 md:pr-4">
+          <div className="flex items-center">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.id;
               return (
@@ -180,6 +187,7 @@ export default function Navbar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                download={link.download ? "Rifqis_Sakha_CV.pdf" : undefined}
                 className="hover:scale-110 hover:text-blue-500 transition-all flex-shrink-0 py-2"
                 aria-label={link.label}
                 title={link.label}

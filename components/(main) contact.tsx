@@ -30,6 +30,10 @@ export default function ContactSection() {
           <Link href="#" className="underline hover:opacity-70">
             contact me
           </Link>
+          <br />
+          <a href="/Rifqis_Sakha_CV.pdf" download="Rifqis_Sakha_CV.pdf" target="_blank" className="underline hover:opacity-70">
+            download cv
+          </a>
         </div>
       </div>
 
