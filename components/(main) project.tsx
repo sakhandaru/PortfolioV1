@@ -1,24 +1,84 @@
 "use client";
 
 import { ArrowUpRight, Github } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export default function Project() {
   const projects = [
     {
-      tag: "Conceptual Work",
-      video: {
-        mp4: "/project-demo/tvku-demo-kecil.mp4",
-        webm: "/project-demo/tvku-demo-kecil.webm",
-        poster: "/project-demo/tvku-demo-thumbnail.jpg",
-      },
+      tag: "Completed",
+      image: "",
+      title: "Custom ERP — Aruna Cipta Perkasa",
+      description:
+        "Highly customized ERP with 9 user roles, full N8N workflow automation, and AI integration. Includes the company's official website.",
+      techStack: ["Next.js", "Laravel", "n8n", "AI"],
+      info: [
+        { label: "Year", value: "2024" },
+        { label: "Role", value: "Full Stack" },
+      ],
+      links: [
+        { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
+        { label: "See on GitHub", icon: <Github size={16} />, href: "#" },
+      ],
+    },
+    {
+      tag: "Completed",
+      image: "",
+      title: "Custom ERP — PPRQ Annasimiyyah",
+      description:
+        "ERP covering academics, syahriah payments, and permissions. Multi-role portal with official website and downloadable brochure.",
+      techStack: ["Next.js", "Laravel", "MySQL"],
+      info: [
+        { label: "Year", value: "2024" },
+        { label: "Role", value: "Full Stack" },
+      ],
+      links: [
+        { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
+        { label: "See on GitHub", icon: <Github size={16} />, href: "#" },
+      ],
+    },
+    {
+      tag: "Completed",
+      image: "",
+      title: "Email Blasting System — EmtekDigital",
+      description:
+        "Scalable Node.js email automation tool with scheduling, open rate tracking, and audience segmentation for an EO agency.",
+      techStack: ["Node.js", "Express", "API"],
+      info: [
+        { label: "Year", value: "2024" },
+        { label: "Role", value: "Backend" },
+      ],
+      links: [
+        { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
+        { label: "See on GitHub", icon: <Github size={16} />, href: "#" },
+      ],
+    },
+    {
+      tag: "Completed",
+      image: "",
+      title: "LAZ MAJT Web System",
+      description:
+        "ERP for zakat, infaq, and donation management with public donation portal, zakat calculator, static CMS, and official website.",
+      techStack: ["Laravel", "Tailwind", "MySQL"],
+      info: [
+        { label: "Year", value: "2023" },
+        { label: "Role", value: "Full Stack" },
+      ],
+      links: [
+        { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
+        { label: "See on GitHub", icon: <Github size={16} />, href: "#" },
+      ],
+    },
+    {
+      tag: "Concept",
+      image: "",
       title: "Landing Page TVKU",
       description:
         "A modern, responsive landing page for TVKU, built with Next.js to ensure fast performance and SEO. It's designed for a seamless user experience, focusing on modern design and accessibility.",
+      techStack: ["Next.js", "Framer Motion"],
       info: [
         { label: "Year", value: "2025" },
-        { label: "Role", value: "Front-end Developer" },
+        { label: "Role", value: "Front-end" },
       ],
       links: [
         { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
@@ -26,18 +86,15 @@ export default function Project() {
       ],
     },
     {
-      tag: "Conceptual Work",
-      video: {
-        mp4: "/project-demo/chatbot-kecil.mp4",
-        webm: "/project-demo/chatbot-kecil.webm",
-        poster: "/project-demo/chatbot-thumbnail.jpg",
-      },
+      tag: "Concept",
+      image: "",
       title: "Chatbot Ai Assistant",
       description:
         "An intelligent AI chatbot for the TVKU platform, designed to boost user engagement with real-time, personalized support. It leverages modern AI and NLP to create an intuitive, user-centric experience.",
+      techStack: ["React", "AI", "NLP", "Ollama"],
       info: [
         { label: "Year", value: "2025" },
-        { label: "Role", value: "Front-end Developer" },
+        { label: "Role", value: "AI Developer" },
       ],
       links: [
         { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
@@ -45,18 +102,15 @@ export default function Project() {
       ],
     },
     {
-      tag: "Conceptual Work",
-      video: {
-        mp4: "/project-demo/ezendaSaaS-kecil.mp4",
-        webm: "/project-demo/ezendaSaaS-kecil.webm",
-        poster: "/project-demo/ezendaSaaS-kecil-thumbnail.jpg",
-      },
+      tag: "Concept",
+      image: "",
       title: "Ezenda SaaS",
       description:
         "A smart SaaS POS solution for service businesses like salons or clinics. It simplifies booking, payment, and inventory management with an intuitive, customizable dashboard designed to streamline operations.",
+      techStack: ["Next.js", "PostgreSQL", "Stripe"],
       info: [
         { label: "Year", value: "2025" },
-        { label: "Role", value: "Front-end Developer" },
+        { label: "Role", value: "Full Stack" },
       ],
       links: [
         { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
@@ -64,18 +118,15 @@ export default function Project() {
       ],
     },
     {
-      tag: "Conceptual Work",
-      video: {
-        mp4: "/project-demo/ezendatemplate-kecil.mp4",
-        webm: "/project-demo/ezendatemplate-kecil.webm",
-        poster: "/project-demo/ezendatemplate-thumbnail.jpg",
-      },
+      tag: "Concept",
+      image: "",
       title: "Ezenda Template",
       description:
         "A versatile SaaS POS template for service-based businesses like salons or clinics. It features a customizable dashboard to manage appointments, payments, and inventory, all designed to improve operational efficiency.",
+      techStack: ["HTML", "CSS", "JS"],
       info: [
         { label: "Year", value: "2023" },
-        { label: "Role", value: "Front-end Developer" },
+        { label: "Role", value: "Front-end" },
       ],
       links: [
         {
@@ -87,18 +138,15 @@ export default function Project() {
       ],
     },
     {
-      tag: "Conceptual Work",
-      video: {
-        mp4: "/project-demo/compress-small.mp4",
-        webm: "/project-demo/compress-small.webm",
-        poster: "/project-demo/compress-thumbnail.jpg",
-      },
+      tag: "Concept",
+      image: "",
       title: "Compress CLI",
       description:
         "Compress CLI is a command-line tool designed to optimize and compress files efficiently, making it easier for developers to manage their assets and improve application performance.",
+      techStack: ["Go", "Bash", "CLI"],
       info: [
         { label: "Year", value: "2023" },
-        { label: "Role", value: "Front-end Developer" },
+        { label: "Role", value: "Developer" },
       ],
       links: [
         { label: "Live Demo", icon: <ArrowUpRight size={16} />, href: "#" },
@@ -111,136 +159,105 @@ export default function Project() {
     <>
       <section
         id="projects"
-        className="bg-gray-100 text-neutral-900 dark:bg-black dark:text-white px-4 pt-16
-"
+        className="bg-white text-neutral-900 dark:bg-black dark:text-white px-4 pt-16 pb-20"
       >
         <h2 className="max-w-6xl mx-auto text-2xl font-bold md:text-3xl lg:text-4xl mb-10">
           My Projects 🧑‍💻
         </h2>
 
-        <div className="max-w-6xl mx-auto space-y-8 md:space-y-24">
+        <div className="max-w-6xl mx-auto flex flex-col">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-12 md:items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-10 lg:py-16 border-b border-neutral-200 dark:border-neutral-800"
             >
-              {/* Video looping + lazy load */}
-              <div className="relative">
-                {project.tag && (
-                  <span className="absolute top-4 left-4 bg-neutral-300/80 text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-300 text-xs px-3 py-1 rounded-full">
-                    {project.tag}
-                  </span>
-                )}
-                <div className="bg-neutral-200 dark:bg-neutral-900 p-3 rounded-xl flex items-center justify-center">
-                  <LazyVideo video={project.video} alt={project.title} />
+              {/* 1. Far Left: Image Mockup (4 Columns) */}
+              <div className="lg:col-span-4 flex flex-col">
+                <div className="bg-neutral-200 dark:bg-neutral-900 rounded-xl aspect-[4/3] flex items-center justify-center overflow-hidden transition-transform duration-500 hover:scale-[1.02] shadow-sm">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+                      Image placeholder (.webp)
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Text Section */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                  {project.title}
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed text-sm md:text-base">
-                  {project.description}
-                </p>
+              {/* 2. Middle: Title, Tech Tags & Description (5 Columns) */}
+              <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">
+                    {project.title}
+                  </h3>
 
-                <div className="mb-6">
-                  <h4 className="text-sm text-neutral-500 tracking-wide mb-2">
-                    PROJECT INFO
-                  </h4>
-                  <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-                    {project.info.map((item, i) => (
-                      <div
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-2 items-start mb-6">
+                    <span className="px-3 py-1 bg-neutral-300 text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200 text-[11px] font-semibold tracking-wide uppercase rounded-full">
+                      {project.tag}
+                    </span>
+                    {project.techStack?.map((tech, i) => (
+                      <span
                         key={i}
-                        className="flex justify-between py-2 text-neutral-700 dark:text-neutral-300 text-sm"
+                        className="px-3 py-1 bg-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 text-[11px] font-medium tracking-wide uppercase rounded-full"
                       >
-                        <span>{item.label}</span>
-                        <span>{item.value}</span>
-                      </div>
+                        {tech}
+                      </span>
                     ))}
                   </div>
+
+                  {/* Description */}
+                  <p className="text-sm md:text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+                    {project.description}
+                  </p>
                 </div>
 
-                <div className="space-y-2">
-                  {project.links.map((link, i) => (
-                    <a
-                      key={i}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-lime-600 dark:text-lime-400 hover:underline text-sm transition-colors duration-300"
-                    >
-                      {link.label} {link.icon}
-                    </a>
+                {/* Additional Info */}
+                <div className="flex gap-6 mt-4 md:mt-auto text-xs text-neutral-500 uppercase tracking-widest">
+                  {project.info.map((info, i) => (
+                    <span key={i}>
+                      {info.label}: <span className="font-semibold text-neutral-700 dark:text-neutral-300">{info.value}</span>
+                    </span>
                   ))}
                 </div>
+              </div>
+
+              {/* 3. Far Right: Links (3 Columns) */}
+              <div className="lg:col-span-3 flex flex-col justify-end space-y-3 mt-6 lg:mt-0 lg:pb-1">
+                {project.links.map((link, i) => (
+                  <Button
+                    key={i}
+                    variant="outline"
+                    className="w-full justify-between items-center px-5 py-5 rounded-full hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white transition-all text-sm font-medium group"
+                    asChild
+                  >
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      <span>{link.label}</span>
+                      <span className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors group-hover:translate-x-1 group-hover:-translate-y-1 transform">
+                        {link.icon}
+                      </span>
+                    </a>
+                  </Button>
+                ))}
               </div>
             </div>
           ))}
         </div>
+
         <center>
           <Button
             variant="outline"
-            className="mt-12 md:mt-16 justify-center rounded-full"
+            className="mt-12 md:mt-16 justify-center rounded-full px-6 py-5 text-sm font-medium"
             onClick={() => (window.location.href = "#about")}
           >
-            More about me <ArrowUpRight size={16} />
+            More about me <ArrowUpRight size={16} className="ml-2" />
           </Button>
         </center>
       </section>
     </>
-  );
-}
-
-/* --- Komponen Lazy Video --- */
-function LazyVideo({
-  video,
-  alt,
-}: {
-  video: { mp4: string; webm: string; poster: string };
-  alt: string;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => setIsVisible(entries[0].isIntersecting),
-      { threshold: 0.25 },
-    );
-
-    if (videoRef.current) observer.observe(videoRef.current);
-
-    return () => {
-      if (videoRef.current) observer.unobserve(videoRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isVisible) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [isVisible]);
-
-  return (
-    <video
-      ref={videoRef}
-      muted
-      loop
-      playsInline
-      preload="none" // 👈 lazy load
-      poster={video.poster} // 👈 preview thumbnail
-      className="rounded-md w-full h-auto object-contain shadow-sm"
-      aria-label={alt}
-    >
-      <source src={video.webm} type="video/webm" />
-      <source src={video.mp4} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
   );
 }

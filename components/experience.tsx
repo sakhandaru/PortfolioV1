@@ -11,76 +11,44 @@ import { ArrowUpRight } from "lucide-react";
 // Data pengalaman kerja dengan properti logoUrl untuk gambar
 export const workExperience = [
   {
-    logoUrl: "/experience/duta.png", // Ganti dengan path logo Duta Pelajar jika ada
-    title: "Duta Pelajar Jepara",
-    dateRange: "2022 – 2023",
-    duration: "1 year",
-    description:
-      "Mewakili pelajar Kabupaten Jepara dalam berbagai inisiatif pendidikan, kebudayaan, dan pengembangan karakter di tingkat daerah.",
-  },
-  {
-    logoUrl: "/experience/nasima.png", // Ganti dengan path logo Nasima jika ada
-    title: "Ketua Pengurus Asrama Nasima",
-    dateRange: "2023 – 2024",
-    duration: "1 year",
-    description:
-      "Mengatur kedisiplinan, koordinasi program asrama, dan memimpin keseharian anggota asrama Nasima dengan fokus pada pembinaan karakter.",
-  },
-  {
-    logoUrl: "/experience/doscom.svg",
-    title: "Ketua Umum DOSCOM",
-    dateRange: "Jan, 2024 – Jan, 2025",
-    duration: "1 year",
-    description:
-      "Memimpin komunitas open-source terbesar di Jawa Tengah, mengarahkan inisiatif pengembangan, dan membina pertumbuhan lebih dari 200 anggota aktif.",
-  },
-  {
-    logoUrl: "/experience/ppko.svg",
-    title: "Ketua Tim PPKO",
-    dateRange: "May, 2024 – Aug, 2024",
-    duration: "4 months",
-    description:
-      "Mempelopori proyek pengabdian masyarakat berbasis IoT, mengelola siklus hidup proyek dari konsep hingga implementasi untuk solusi komunitas yang inovatif.",
-  },
-  {
     logoUrl: "/experience/tvku.png",
-    title: "Frontend Developer at TVKU",
+    title: "Web Engineer",
     dateRange: "Mar, 2025 – Jul, 2025",
     duration: "5 months",
     description:
-      "Mengembangkan fitur antarmuka yang responsif dan berkinerja tinggi. Berkolaborasi dengan tim desain dan backend untuk menghadirkan pengalaman pengguna yang mulus.",
+      "Built and launched the public-facing landing page for TVKU's media platform, ensuring responsive design and performance. Also contributed to developing an AI-powered chatbot integrated into the platform.",
   },
   {
     logoUrl: "/experience/mekanikace.svg",
-    title: "Marketing Analyst at PT. Mekanikace",
+    title: "Full Stack Developer",
     dateRange: "Jan, 2024 – Nov, 2024",
     duration: "11 months",
     description:
-      "Menganalisis tren pasar dan perilaku pengguna untuk menyusun strategi pemasaran berbasis data, berkontribusi pada peningkatan akuisisi pelanggan yang signifikan.",
+      "Executed end-to-end full stack projects at a software house environment. Additionally handled QA, business flow analysis, and UI/UX review across multiple client projects.",
   },
   {
     logoUrl: "/experience/pprq.png",
-    title: "Full Stack Web Developer at PPRQ Annasimiyah",
+    title: "Full Stack Developer",
     dateRange: "Sep, 2024 – Feb, 2025",
     duration: "6 months",
     description:
-      "Merancang dan menerapkan portal web komprehensif, mengelola pengembangan end-to-end (frontend & backend) untuk sistem manajemen internal.",
+      "Developed a multi-role ERP and web portal with User, Admin, and Super Admin access levels for managing pesantren operations. Also built the official website.",
   },
   {
-    logoUrl: "/experience/rr.webp",
-    title: "Web Developer at CV. ERDUA Digital Printing",
-    dateRange: "Apr, 2023 – Dec, 2023",
-    duration: "9 months",
+    logoUrl: "/experience/placeholder.png",
+    title: "Outsourcing Developer",
+    dateRange: "2024",
+    duration: "Contract",
     description:
-      "Membangun dan memelihara solusi web e-commerce, menerjemahkan kebutuhan bisnis menjadi antarmuka pengguna yang fungsional dan menarik.",
+      "Took ownership of an existing custom internal system built with Laravel, handling ongoing maintenance, bug resolution, and feature continuity to ensure stable day-to-day operations.",
   },
   {
-    logoUrl: "/experience/pprq.png",
-    title: "IT Consultant at NU Online",
-    dateRange: "Feb, 2024 – Dec, 2024",
-    duration: "11 months",
+    logoUrl: "/experience/doscom.svg",
+    title: "Lead",
+    dateRange: "Jan, 2024 – Jan, 2025",
+    duration: "1 year",
     description:
-      "Memberikan panduan strategis mengenai arsitektur teknologi dan transformasi digital, serta mengoptimalkan efisiensi dan keamanan sistem.",
+      "Led the largest open source community in Central Java, directing open-source technology research, Linux ecosystem exploration, and developer tooling initiatives across multiple collaborative projects.",
   },
 ];
 
@@ -151,7 +119,7 @@ export function MarqueeDemo() {
       </div>
       <center>
         <Button variant="outline" className="mb-6 rounded-full" asChild>
-          <Link href="/About">
+          <Link href="/#about">
             More about me <ArrowUpRight size={16} />
           </Link>
         </Button>

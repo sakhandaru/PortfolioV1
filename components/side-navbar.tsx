@@ -3,7 +3,6 @@
 import {
   Home,
   User,
-  Mail,
   Moon,
   Sun,
   Share2,
@@ -18,203 +17,191 @@ import {
   FaWhatsapp,
 } from "react-icons/fa6";
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isSocialOpen, setIsSocialOpen] = useState(false);
-  const [isSocialDesktop, setIsSocialDesktop] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const isBottomRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
+
+    const handleScroll = () => {
+      // 1. Detect bottom for auto-opening social links
+      const isBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100;
+      
+      if (isBottom && !isBottomRef.current) {
+        setIsSocialOpen(true);
+        isBottomRef.current = true;
+      } else if (!isBottom && isBottomRef.current) {
+        setIsSocialOpen(false);
+        isBottomRef.current = false;
+      }
+
+      // 2. Detect active section
+      const sections = ["hero", "about", "projects"];
+      let current = "";
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      if (scrollY < 100) {
+        current = "hero";
+      } else {
+        for (const id of sections) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 3) {
+              current = id;
+            }
+          }
+        }
+      }
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initially
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { href: "/#hero", icon: <Home size={22} />, label: "Home" },
-    { href: "/About", icon: <User size={22} />, label: "About" },
-    { href: "/#projects", icon: <FolderGit2 size={22} />, label: "Projects" },
-    // { href: "/#contact", icon: <Mail size={22} />, label: "Contact" },
+    { href: "/#hero", icon: <Home size={20} />, label: "Home", id: "hero" },
+    { href: "/#about", icon: <User size={20} />, label: "About", id: "about" },
+    { href: "/#projects", icon: <FolderGit2 size={20} />, label: "Projects", id: "projects" },
   ];
 
   const socialLinks = [
     {
       href: "https://wa.me/+6287716632356",
-      icon: <FaWhatsapp size={22} />,
+      icon: <FaWhatsapp size={20} />,
       label: "WhatsApp",
     },
     {
       href: "https://instagram.com/sakhandaru",
-      icon: <FaInstagram size={22} />,
+      icon: <FaInstagram size={20} />,
       label: "Instagram",
     },
     {
       href: "https://linkedin.com/in/Rifqis Sakha",
-      icon: <FaLinkedin size={22} />,
+      icon: <FaLinkedin size={20} />,
       label: "LinkedIn",
     },
     {
       href: "https://github.com/sakhandaru",
-      icon: <FaGithub size={22} />,
+      icon: <FaGithub size={20} />,
       label: "GitHub",
     },
     {
       href: "https://gitlab.com/sakhandaru",
-      icon: <FaGitlab size={22} />,
+      icon: <FaGitlab size={20} />,
       label: "GitLab",
     },
   ];
 
   return (
     <>
-      {/* === DESKTOP SIDE NAVBAR === */}
-      <div className="fixed right-0 top-0 h-full w-[50px] z-50 group hidden md:block">
-        <div
-          className={`
-            absolute right-0 top-1/2 -translate-y-1/2
-            flex flex-col justify-between
-            shadow-lg transition-all duration-300
-            dark:bg-white dark:text-black bg-black text-white
-            md:translate-x-[70%] md:group-hover:translate-x-0
-          `}
+      {/* === RESPONSIVE DOCK NAVBAR (Dynamic Island) === */}
+      <div
+        className={`
+          fixed left-1/2 -translate-x-1/2 z-50
+          bottom-8 md:bottom-auto md:top-8
+          flex items-center justify-center
+          px-3 sm:px-4 md:px-6
+          rounded-full py-3 md:py-3 
+          shadow-xl backdrop-blur-xl
+          dark:bg-white dark:text-black bg-black text-white
+          transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
+          ${isSocialOpen ? "w-[90%] sm:w-min" : "w-auto max-w-sm"}
+        `}
+      >
+        {/* Nav Items */}
+        <div 
+          className={`flex items-center transition-all duration-500 ease-in-out overflow-hidden ${
+            isSocialOpen ? "max-w-0 opacity-0 md:max-w-0" : "max-w-[500px] opacity-100"
+          }`}
         >
-          <div className="flex flex-col items-center p-2">
-            <div className="flex flex-col items-center space-y-4">
-              {navItems.map((item, index) => (
+          <div className="flex items-center pr-2 md:pr-4">
+            {navItems.map((item, index) => {
+              const isActive = activeSection === item.id;
+              return (
                 <Link
                   key={index}
                   href={item.href}
-                  className="p-2 hover:opacity-70 transition"
+                  className={`flex items-center transition-all duration-500 flex-shrink-0 py-2 ${
+                    isActive ? "px-2 mx-1" : "px-2 mx-0 hover:scale-110 hover:opacity-80"
+                  }`}
                   aria-label={item.label}
                   title={item.label}
                 >
-                  {item.icon}
+                  <div className="flex-shrink-0">{item.icon}</div>
+                  <span 
+                    className={`overflow-hidden transition-all duration-500 whitespace-nowrap font-medium text-sm flex items-center ${
+                      isActive ? "max-w-[80px] opacity-100 ml-2" : "max-w-0 opacity-0 ml-0"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
                 </Link>
-              ))}
-
-              {/* Desktop Social Accordion */}
-              <div className="flex flex-col items-center">
-                <button
-                  onClick={() => setIsSocialDesktop(!isSocialDesktop)}
-                  className="p-2 hover:opacity-70 transition"
-                  aria-expanded={isSocialDesktop}
-                  aria-label="Social Media Links"
-                  title="Social Media"
-                >
-                  <Share2 size={22} />
-                </button>
-                <div
-                  className={`flex flex-col items-center space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${
-                    isSocialDesktop ? "max-h-96 mt-2" : "max-h-0"
-                  }`}
-                >
-                  {socialLinks.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 hover:opacity-70 transition"
-                      aria-label={link.label}
-                      title={link.label}
-                    >
-                      {link.icon}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Dark Mode */}
-          <div className="p-2 flex justify-center">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 hover:opacity-70 transition"
-            >
-              {mounted &&
-                (theme === "dark" ? <Sun size={22} /> : <Moon size={22} />)}
-            </button>
+              );
+            })}
           </div>
         </div>
-      </div>
 
-      {/* === MOBILE IOS DOCK NAVBAR === */}
-      <div
-        className={`
-          fixed bottom-8 left-1/2 -translate-x-1/2 z-50
-          flex items-center justify-evenly
-          w-[80%] max-w-md rounded-full py-6 
-          shadow-xl backdrop-blur-xl
-          dark:bg-white dark:text-black bg-black text-white
-          md:hidden
-        `}
-      >
-        {navItems.map((item, index) => (
-          <Link
-            key={index}
-            href={item.href}
-            className="flex flex-col items-center hover:scale-110 transition"
-            aria-label={item.label}
-            title={item.label}
-          >
-            {item.icon}
-          </Link>
-        ))}
-
-        {/* Share Button (Modal) */}
+        {/* Share Toggle Button */}
         <button
-          onClick={() => setIsSocialOpen(true)}
-          className="hover:scale-110 transition"
+          onClick={() => setIsSocialOpen(!isSocialOpen)}
+          className={`hover:scale-110 hover:opacity-80 transition-all z-10 flex-shrink-0 min-w-[40px] flex justify-center py-2 ${
+            isSocialOpen ? "text-blue-500" : ""
+          }`}
+          aria-label={isSocialOpen ? "Close Social Media" : "Open Social Media"}
         >
-          <Share2 size={22} />
+          {isSocialOpen ? (
+            <X size={20} className="rotate-90 hover:rotate-0 transition-transform duration-500" />
+          ) : (
+            <Share2 size={20} className="hover:-rotate-12 transition-transform duration-500" />
+          )}
         </button>
 
-        {/* Dark Mode Toggle */}
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="hover:scale-110 transition"
+        {/* Social Icons - Expands outward */}
+        <div 
+          className={`flex items-center transition-all duration-500 ease-in-out overflow-hidden ${
+            isSocialOpen ? "max-w-[300px] opacity-100" : "max-w-0 opacity-0"
+          }`}
         >
-          {mounted &&
-            (theme === "dark" ? <Sun size={22} /> : <Moon size={22} />)}
-        </button>
-      </div>
-
-      {/* === SOCIAL MODAL (MOBILE) === */}
-      {isSocialOpen && (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 md:hidden">
-          <div
-            className={`
-              flex flex-col space-y-6 p-6 rounded-2xl shadow-xl
-              dark:bg-white dark:text-black bg-black text-white
-            `}
-          >
-            <div className="flex justify-between items-center">
-              <h2 className="font-semibold">Connect with me</h2>
-              <button onClick={() => setIsSocialOpen(false)}>
-                <X size={22} />
-              </button>
-            </div>
-
-            <div className="flex space-x-6">
-              {socialLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:scale-110 transition"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  {link.icon}
-                </Link>
-              ))}
-            </div>
+          <div className="flex items-center gap-4 pl-4 md:pl-6 pr-2">
+            {socialLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 hover:text-blue-500 transition-all flex-shrink-0 py-2"
+                aria-label={link.label}
+                title={link.label}
+              >
+                {link.icon}
+              </Link>
+            ))}
           </div>
         </div>
-      )}
+
+        {/* Dark Mode Toggle - Stays visible but has a divider */}
+        <div className="flex items-center transition-all duration-500 overflow-hidden ml-2 pl-3 md:ml-4 md:pl-4 border-l border-gray-300/20 dark:border-gray-700/50">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="hover:scale-110 hover:opacity-80 transition-all flex-shrink-0 flex justify-center w-[40px] p-2"
+            aria-label="Toggle Dark Mode"
+          >
+            {mounted &&
+              (theme === "dark" ? <Sun size={24} /> : <Moon size={24} />)}
+          </button>
+        </div>
+      </div>
     </>
   );
 }

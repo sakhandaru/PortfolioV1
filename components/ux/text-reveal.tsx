@@ -52,12 +52,12 @@ export const TextReveal: FC<TextRevealProps> = ({ title, children }) => {
     <div
       ref={targetRef}
       className={cn(
-        "relative z-0 h-[200vh] bg-gray-100 dark:bg-black pt-40 sm:pt-28 md:pt-24 lg:pt-20 xl:pt-16",
+        "relative z-0 h-[120vh] bg-gray-100 dark:bg-black",
       )}
     >
       <div
         className={
-          "sticky top-40 sm:top-28 md:top-24 lg:top-20 xl:top-16 mx-auto flex items-center justify-center h-screen  px-[1rem] py-[2rem] "
+          "sticky top-0 mx-auto flex items-start justify-center min-h-[50vh] px-[1rem] pt-[100px] sm:pt-[120px]"
         }
       >
         {/* Container untuk judul dan paragraf agar sejajar */}
