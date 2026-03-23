@@ -4,27 +4,38 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Dock, DockIcon } from "@/components/ux/dock";
+import Magnetic from "@/components/ux/magnetic";
 
 export const techIcons = [
-  { name: "JavaScript", src: "/icon/js.svg" },
-  { name: "TypeScript", src: "/icon/ts2.svg" },
-  { name: "React", src: "/icon/React.svg" },
-  { name: "Next.js", src: "/icon/Next.svg" },
-  { name: "Svelte", src: "/icon/Svelte.svg" },
-  { name: "Tailwind", src: "/icon/Tailwind.svg" },
-  { name: "GSAP", src: "/icon/GSAPlogo.svg" },
-  { name: "Framer Motion", src: "/icon/motion.png" },
-  { name: "Axios", src: "/icon/Axios.svg" },
-  { name: "Supabase", src: "/icon/Supabase.png" },
-  { name: "PostgreSQL", src: "/icon/PostgreSQL.svg" },
-  { name: "Elysia", src: "/icon/Elysia.svg" },
-  { name: "Docker", src: "/icon/docker.svg" },
-  { name: "npm", src: "/icon/npm.svg" },
-  { name: "Node.js", src: "/icon/Node.svg" },
-  { name: "Jest", src: "/icon/jest2.svg" },
-  { name: "Git", src: "/icon/git.svg" },
-  { name: "Figma", src: "/icon/figma.svg" },
-  { name: "Framer", src: "/icon/Framer3.svg" },
+  // Languages
+  { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript" },
+  { name: "TypeScript", src: "https://cdn.simpleicons.org/typescript" },
+  { name: "PHP", src: "https://cdn.simpleicons.org/php" },
+  { name: "Python", src: "https://cdn.simpleicons.org/python" },
+
+  // Frameworks & Backend
+  { name: "React", src: "https://cdn.simpleicons.org/react" },
+  { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs", className: "dark:invert" },
+  { name: "Laravel", src: "https://cdn.simpleicons.org/laravel" },
+  { name: "Node.js", src: "https://cdn.simpleicons.org/nodedotjs" },
+  { name: "Flask", src: "https://cdn.simpleicons.org/flask", className: "dark:invert" },
+
+  // Database
+  { name: "MySQL", src: "https://cdn.simpleicons.org/mysql" },
+  { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql" },
+  { name: "MariaDB", src: "https://cdn.simpleicons.org/mariadb" },
+
+  // Automation & DevOps
+  { name: "n8n", src: "https://cdn.simpleicons.org/n8n" },
+  { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
+  { name: "Linux", src: "https://cdn.simpleicons.org/linux", className: "dark:invert" },
+  { name: "Git", src: "https://cdn.simpleicons.org/git" },
+
+  // Tools & Design
+  { name: "Figma", src: "https://cdn.simpleicons.org/figma" },
+  { name: "Notion", src: "https://cdn.simpleicons.org/notion", className: "dark:invert" },
+  { name: "Jira", src: "https://cdn.simpleicons.org/jira" },
+  { name: "Trello", src: "https://cdn.simpleicons.org/trello" },
 ];
 
 export function TechStackGrid() {
@@ -37,70 +48,36 @@ export function TechStackGrid() {
   if (!mounted) return null;
 
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
-      {techIcons.map((icon, index) => (
-        <motion.div
-          key={icon.name}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: index * 0.05 }}
-          viewport={{ once: true }}
-          className="group relative flex flex-col items-center justify-center p-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-        >
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 mb-2 transition-transform duration-300 group-hover:scale-110">
-            <Image
-              src={icon.src}
-              alt={icon.name}
-              fill
-              className="object-contain"
-            />
-          </div>
-          <span className="text-[10px] sm:text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
-            {icon.name}
-          </span>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-export function TechStackDock() {
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  return (
-    <div className="relative overflow-hidden w-full">
-      <div className="overflow-x-auto pb-4 scrollbar-hide">
-        <div className="flex justify-start sm:justify-center min-w-max px-6">
-          <Dock
-            direction="middle"
-            className="gap-2 sm:gap-3 md:gap-4 p-4 bg-transparent border-none shadow-none"
-          >
-            {techIcons.map((icon) => (
-              <DockIcon
-                key={icon.name}
-                className="bg-transparent shadow-none hover:bg-neutral-200/20 dark:hover:bg-neutral-800/20"
-              >
-                <Image
+    <div className="pt-10 pb-8 w-full">
+      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-x-4 gap-y-10 md:gap-y-12 justify-items-center">
+        {techIcons.map((icon, index) => (
+          <Magnetic intensity={0.2} key={icon.name}>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.02 }}
+              viewport={{ once: true }}
+              className="group relative flex flex-col items-center justify-center cursor-pointer mix-blend-luminosity dark:mix-blend-normal"
+            >
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 mb-3 transition-transform duration-500 group-hover:scale-125 group-hover:-translate-y-2">
+                <img
                   src={icon.src}
                   alt={icon.name}
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
+                  className={`w-full h-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${icon.className || ""}`}
                 />
-              </DockIcon>
-            ))}
-          </Dock>
-        </div>
+              </div>
+              <span className="text-[9px] sm:text-[10px] font-mono font-medium text-neutral-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-500 text-center tracking-widest uppercase opacity-0 group-hover:opacity-100 absolute -bottom-3 whitespace-nowrap">
+                {icon.name}
+              </span>
+            </motion.div>
+          </Magnetic>
+        ))}
       </div>
     </div>
   );
 }
 
-// Keep DockDemo as alias for backward compatibility if needed, or remove if certain
-export const DockDemo = TechStackDock;
+// Kita overwrite TechStackDock agar langsung merender versi Grid
+// sehingga tak perlu merefaktor file import
+export const TechStackDock = TechStackGrid;
+export const DockDemo = TechStackGrid;

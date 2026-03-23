@@ -96,12 +96,9 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
       className={`absolute select-none ${className}`}
       style={{ width }}
     >
-      <Image
+      <img
         src={imageSrc}
         alt="Sticker"
-        width={width}
-        height={width}
-        priority
         className="w-full h-auto block pointer-events-none"
         draggable={false}
         onContextMenu={(e: React.MouseEvent) => e.preventDefault()}

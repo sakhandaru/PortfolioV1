@@ -8,6 +8,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa6";
 import Link from "next/link";
+import Magnetic from "@/components/ux/magnetic";
 
 export default function ContactSection() {
   return (
@@ -50,32 +51,33 @@ export default function ContactSection() {
         </div>
 
         {/* Social Media Icons */}
-        {/* <div className="flex flex-wrap justify-center gap-3">
-          <SocialIcon
-            icon={<FaWhatsapp size={18} />}
-            link="https://wa.me/+6287716632356"
-          />
-          <SocialIcon
-            icon={<FaInstagram size={18} />}
-            link="https://instagram.com/sakhandaru"
-          />
-          <SocialIcon
-            icon={<FaLinkedin size={18} />}
-            link="https://linkedin.com/in/Rifqis Sakha"
-          />
-          <SocialIcon
-            icon={<FaGithub size={18} />}
-            link="https://github.com/sakhandaru"
-          />
-          <SocialIcon
-            icon={<FaGitlab size={18} />}
-            link="https://gitlab.com/sakhandaru"
-          />
+         <div className="flex flex-wrap justify-center gap-2 sm:gap-4 my-8 sm:my-0">
+          <Magnetic intensity={0.3}>
+            <Link href="https://wa.me/+6287716632356" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-800 dark:border-neutral-200 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-300">
+              <FaWhatsapp size={20} />
+            </Link>
+          </Magnetic>
+          <Magnetic intensity={0.3}>
+            <Link href="https://instagram.com/sakhandaru" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-800 dark:border-neutral-200 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-300">
+              <FaInstagram size={20} />
+            </Link>
+          </Magnetic>
+          <Magnetic intensity={0.3}>
+            <Link href="https://linkedin.com/in/Rifqis Sakha" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-800 dark:border-neutral-200 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-300">
+              <FaLinkedin size={20} />
+            </Link>
+          </Magnetic>
+          <Magnetic intensity={0.3}>
+            <Link href="https://github.com/sakhandaru" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-800 dark:border-neutral-200 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-300">
+              <FaGithub size={20} />
+            </Link>
+          </Magnetic>
+        </div>
 
         {/* Location & Year */}
-        <div className="text-center sm:text-right">
+        <div className="text-center sm:text-right font-mono">
           <p>Semarang, Indonesia</p>
-          <p>2025</p>
+          <p>2026</p>
         </div>
       </div>
     </section>

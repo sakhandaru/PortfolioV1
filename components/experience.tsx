@@ -35,7 +35,7 @@ export const workExperience = [
       "Developed a multi-role ERP and web portal with User, Admin, and Super Admin access levels for managing pesantren operations. Also built the official website.",
   },
   {
-    logoUrl: "/experience/placeholder.png",
+    logoUrl: "https://cdn.simpleicons.org/laravel",
     title: "Outsourcing Developer",
     dateRange: "2024",
     duration: "Contract",
@@ -77,12 +77,12 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-4">
-        <Image
+        <img
           src={logoUrl}
           alt={`Logo ${title}`}
           width={56}
           height={56}
-          className="h-14 w-14 rounded-md object-cover" // Kelas untuk membuat gambar proporsional
+          className="h-14 w-14 rounded-md object-contain" // Kelas untuk membuat gambar proporsional
         />
         <div className="flex flex-col">
           <figcaption className="text-lg font-medium leading-snug dark:text-white">
@@ -104,26 +104,20 @@ const ReviewCard = ({
 export function MarqueeDemo() {
   return (
     <>
-      <h2 className="text-2xl font-bold text-black dark:text-white md:text-3xl lg:text-4xl mb-6">
+      <h2 className="text-3xl font-bold text-black dark:text-white md:text-4xl lg:text-5xl mb-6">
         My Experience 🧳
       </h2>
 
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-10">
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden pb-10">
         <Marquee pauseOnHover className="[--duration:60s]">
-          {workExperience.map((review) => (
-            <ReviewCard key={review.title} {...review} />
+          {workExperience.map((review, i) => (
+            <ReviewCard key={`${review.title}-${i}`} {...review} />
           ))}
         </Marquee>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-gray-100 to-transparent dark:from-black"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-gray-100 to-transparent dark:from-black"></div>
       </div>
-      <center>
-        <Button variant="outline" className="mb-6 rounded-full" asChild>
-          <Link href="/#about">
-            More about me <ArrowUpRight size={16} />
-          </Link>
-        </Button>
-      </center>
+      
     </>
   );
 }
