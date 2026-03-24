@@ -29,7 +29,7 @@ export const projectsContent = {
         "Highly customized ERP with 9 user roles, full N8N workflow automation, and AI integration. Includes the company's official website.",
       techStack: ["Next.js", "Laravel", "n8n", "AI"],
       info: [
-        { label: "Year", value: "2024" },
+        { label: "Year", value: "2025" },
         { label: "Role", value: "Full Stack" },
       ],
       links: [
@@ -49,7 +49,7 @@ export const projectsContent = {
         "ERP covering academics, syahriah payments, and permissions. Multi-role portal with official website and downloadable brochure.",
       techStack: ["Next.js", "Laravel", "MySQL"],
       info: [
-        { label: "Year", value: "2024" },
+        { label: "Year", value: "2025" },
         { label: "Role", value: "Full Stack" },
       ],
       links: [
@@ -69,7 +69,7 @@ export const projectsContent = {
         "Scalable Node.js email automation tool with scheduling, open rate tracking, and audience segmentation for an EO agency.",
       techStack: ["Node.js", "Express", "API"],
       info: [
-        { label: "Year", value: "2024" },
+        { label: "Year", value: "2025" },
         { label: "Role", value: "Backend" },
       ],
       links: [
@@ -88,7 +88,7 @@ export const projectsContent = {
         "ERP for zakat, infaq, and donation management with public donation portal, zakat calculator, static CMS, and official website.",
       techStack: ["Laravel", "Tailwind", "MySQL"],
       info: [
-        { label: "Year", value: "2023" },
+        { label: "Year", value: "2026" },
         { label: "Role", value: "Full Stack" },
       ],
       links: [
