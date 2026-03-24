@@ -20,8 +20,9 @@ export const projectsContent = {
     {
       tag: "Completed",
       images: [
-        "/images/projects/test-mock.webp",
-        "/images/projects/test-mock.webp" // Gambar yang sama untuk demo
+        "/images/projects/arcade1.png",
+        "/images/projects/arcade2.png",
+        "/images/projects/arcade3.png"
       ],
       title: "Custom ERP — Aruna Cipta Perkasa",
       description:
@@ -32,13 +33,17 @@ export const projectsContent = {
         { label: "Role", value: "Full Stack" },
       ],
       links: [
-        { label: "Live Demo", icon: "external", href: "#" },
+        { label: "Live Demo", icon: "external", href: "https://arcipta.com/" },
         { label: "See on GitHub", icon: "github", href: "#" },
       ],
     },
     {
       tag: "Completed",
-      images: ["/images/projects/test-mock.webp"],
+      images: [
+        "/images/projects/sipprq1.png",
+        "/images/projects/sipprq2.png",
+        "/images/projects/sipprq3.png"
+      ],
       title: "Custom ERP — PPRQ Annasimiyyah",
       description:
         "ERP covering academics, syahriah payments, and permissions. Multi-role portal with official website and downloadable brochure.",
@@ -48,13 +53,17 @@ export const projectsContent = {
         { label: "Role", value: "Full Stack" },
       ],
       links: [
-        { label: "Live Demo", icon: "external", href: "#" },
+        { label: "Live Demo", icon: "external", href: "https://pprqportal.com/" },
         { label: "See on GitHub", icon: "github", href: "#" },
       ],
     },
     {
       tag: "Completed",
-      images: ["/images/projects/test-mock.webp"],
+      images: [
+        "/images/projects/EmailBlasting.webp",
+        "/images/projects/email2.png",
+        "/images/projects/email3.png" // Gambar yang sama untuk demo
+      ],
       title: "Email Blasting System — EmtekDigital",
       description:
         "Scalable Node.js email automation tool with scheduling, open rate tracking, and audience segmentation for an EO agency.",
@@ -70,7 +79,10 @@ export const projectsContent = {
     },
     {
       tag: "Completed",
-      images: ["/images/projects/test-mock.webp"],
+      images: [
+        "/images/projects/LAZ 1.png",
+        "/images/projects/LAZ 2.png",
+      ],
       title: "LAZ MAJT Web System",
       description:
         "ERP for zakat, infaq, and donation management with public donation portal, zakat calculator, static CMS, and official website.",
@@ -80,13 +92,14 @@ export const projectsContent = {
         { label: "Role", value: "Full Stack" },
       ],
       links: [
-        { label: "Live Demo", icon: "external", href: "#" },
+        { label: "Live Demo", icon: "external", href: "https://majt.or.id/" },
         { label: "See on GitHub", icon: "github", href: "#" },
       ],
     },
     {
       tag: "Concept",
-      images: ["/images/projects/test-mock.webp"],
+      images: 
+      ["/images/projects/tvku1.png", "/images/projects/tvku2.png", "/images/projects/tvku3.png", "/images/projects/tvku4.png"],
       title: "Landing Page TVKU",
       description:
         "A modern, responsive landing page for TVKU, built with Next.js to ensure fast performance and SEO. It's designed for a seamless user experience, focusing on modern design and accessibility.",
@@ -102,7 +115,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      images: ["/images/projects/test-mock.webp"],
+      images: ["/images/projects/ai1.png"],
       title: "Chatbot Ai Assistant",
       description:
         "An intelligent AI chatbot for the TVKU platform, designed to boost user engagement with real-time, personalized support. It leverages modern AI and NLP to create an intuitive, user-centric experience.",
@@ -116,57 +129,21 @@ export const projectsContent = {
         { label: "See on GitHub", icon: "github", href: "#" },
       ],
     },
-    {
-      tag: "Concept",
-      images: ["/images/projects/test-mock.webp"],
-      title: "Ezenda SaaS",
-      description:
-        "A smart SaaS POS solution for service businesses like salons or clinics. It simplifies booking, payment, and inventory management with an intuitive, customizable dashboard designed to streamline operations.",
-      techStack: ["Next.js", "PostgreSQL", "Stripe"],
-      info: [
-        { label: "Year", value: "2025" },
-        { label: "Role", value: "Full Stack" },
-      ],
-      links: [
-        { label: "Live Demo", icon: "external", href: "#" },
-        { label: "See on GitHub", icon: "github", href: "#" },
-      ],
-    },
-    {
-      tag: "Concept",
-      images: ["/images/projects/test-mock.webp"],
-      title: "Ezenda Template",
-      description:
-        "A versatile SaaS POS template for service-based businesses like salons or clinics. It features a customizable dashboard to manage appointments, payments, and inventory, all designed to improve operational efficiency.",
-      techStack: ["HTML", "CSS", "JS"],
-      info: [
-        { label: "Year", value: "2023" },
-        { label: "Role", value: "Front-end" },
-      ],
-      links: [
-        {
-          label: "Live Demo",
-          icon: "external",
-          href: "/Intermezo/DraftTA#draft",
-        },
-        { label: "See on GitHub", icon: "github", href: "#" },
-      ],
-    },
-    {
-      tag: "Concept",
-      images: ["/images/projects/test-mock.webp"],
-      title: "Compress CLI",
-      description:
-        "Compress CLI is a command-line tool designed to optimize and compress files efficiently, making it easier for developers to manage their assets and improve application performance.",
-      techStack: ["Go", "Bash", "CLI"],
-      info: [
-        { label: "Year", value: "2023" },
-        { label: "Role", value: "Developer" },
-      ],
-      links: [
-        { label: "Live Demo", icon: "external", href: "#" },
-        { label: "See on GitHub", icon: "github", href: "#" },
-      ],
-    },
+    // {
+    //   tag: "Concept",
+    //   images: ["/images/projects/test-mock.webp"],
+    //   title: "Compress CLI",
+    //   description:
+    //     "Compress CLI is a command-line tool designed to optimize and compress files efficiently, making it easier for developers to manage their assets and improve application performance.",
+    //   techStack: ["Go", "Bash", "CLI"],
+    //   info: [
+    //     { label: "Year", value: "2023" },
+    //     { label: "Role", value: "Developer" },
+    //   ],
+    //   links: [
+    //     { label: "Live Demo", icon: "external", href: "#" },
+    //     { label: "See on GitHub", icon: "github", href: "#" },
+    //   ],
+    // },
   ] satisfies ProjectItem[],
 } as const;

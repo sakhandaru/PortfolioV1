@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { ArrowUpRight, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, Github, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projectsContent } from "@/content/projects";
 
@@ -53,7 +53,7 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide aspect-[4/3] w-full bg-neutral-100 dark:bg-neutral-900 transition-transform duration-500 hover:scale-[1.01]"
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide aspect-[4/3] w-full transition-transform duration-500 hover:scale-[1.01]"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {images.map((image, i) => (
@@ -65,7 +65,7 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
               src={image}
               alt={`${title} - image ${i + 1}`}
               fill
-              className="object-contain drop-shadow-md p-4"
+              className="object-contain drop-shadow-md"
               priority={i === 0}
             />
           </div>
@@ -187,10 +187,13 @@ export default function Project() {
                     return (
                       <div
                         key={i}
-                        className="flex items-center gap-2 font-mono text-sm font-medium text-neutral-400 dark:text-neutral-600 cursor-not-allowed"
+                        className="flex items-center gap-2.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-md font-mono text-[10px] md:text-[11px] font-semibold text-neutral-500 dark:text-neutral-500 cursor-not-allowed uppercase tracking-wider group relative"
                       >
-                        {iconMap[link.icon]}
-                        <span>{link.label} (Private)</span>
+                        <Lock size={12} className="text-neutral-400 dark:text-neutral-600" />
+                        <span>{link.label}: Confidential / NDA</span>
+                        
+                        {/* Subtle Glow Effect on Hover */}
+                        <div className="absolute inset-0 rounded-md bg-neutral-400/5 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                       </div>
                     );
                   }
