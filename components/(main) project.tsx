@@ -53,13 +53,13 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide aspect-[4/3] w-full transition-transform duration-500 hover:scale-[1.01]"
+        className="flex overflow-x-auto snap-x snap-mandatory overscroll-x-contain scrollbar-hide aspect-[4/3] w-full transition-transform duration-500 hover:scale-[1.01]"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {images.map((image, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-full h-full snap-center relative"
+            className="flex-shrink-0 w-full h-full snap-center snap-always relative"
           >
             <Image
               src={image}
