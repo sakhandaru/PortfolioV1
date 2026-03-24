@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { mediaContent } from "@/content/media";
 
 export default function PhotoCircle() {
   return (
@@ -15,8 +16,8 @@ export default function PhotoCircle() {
       "
       >
         <Image
-          src="/pp2.png"
-          alt="Foto profil Sakhandaru, seorang Fullstack Developer"
+          src={mediaContent.profile.photo.src}
+          alt={mediaContent.profile.photo.alt}
           fill
           className="object-cover"
           sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 112px"

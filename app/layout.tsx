@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import SideNavbar from "@/components/side-navbar";
+import { siteMetadata } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "sakhandaru-portfolio",
-  description: "personal-portofolio",
-};
+export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({
   children,

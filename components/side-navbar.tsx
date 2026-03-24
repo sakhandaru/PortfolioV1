@@ -20,6 +20,7 @@ import {
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { dockSocialLinks, navSections } from "@/content/site";
 
 function useMounted() {
   return useSyncExternalStore(
@@ -35,6 +36,19 @@ export default function Navbar() {
   const [isSocialOpen, setIsSocialOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const isBottomRef = useRef(false);
+  const navIconMap = {
+    home: <Home size={20} />,
+    user: <User size={20} />,
+    projects: <FolderGit2 size={20} />,
+  } as const;
+  const socialIconMap = {
+    file: <FileText size={20} />,
+    whatsapp: <FaWhatsapp size={20} />,
+    instagram: <FaInstagram size={20} />,
+    linkedin: <FaLinkedin size={20} />,
+    github: <FaGithub size={20} />,
+    gitlab: <FaGitlab size={20} />,
+  } as const;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,51 +93,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { href: "/#hero", icon: <Home size={20} />, label: "Home", id: "hero" },
-    { href: "/#about", icon: <User size={20} />, label: "About", id: "about" },
-    {
-      href: "/#projects",
-      icon: <FolderGit2 size={20} />,
-      label: "Projects",
-      id: "projects",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      href: "/Rifqis_Sakha_CV.pdf",
-      icon: <FileText size={20} />,
-      label: "Download CV",
-      download: true,
-    },
-    {
-      href: "https://wa.me/+6287716632356",
-      icon: <FaWhatsapp size={20} />,
-      label: "WhatsApp",
-    },
-    {
-      href: "https://instagram.com/sakhandaru",
-      icon: <FaInstagram size={20} />,
-      label: "Instagram",
-    },
-    {
-      href: "https://linkedin.com/in/Rifqis Sakha",
-      icon: <FaLinkedin size={20} />,
-      label: "LinkedIn",
-    },
-    {
-      href: "https://github.com/sakhandaru",
-      icon: <FaGithub size={20} />,
-      label: "GitHub",
-    },
-    {
-      href: "https://gitlab.com/sakhandaru",
-      icon: <FaGitlab size={20} />,
-      label: "GitLab",
-    },
-  ];
-
   return (
     <div
       className={`
@@ -146,7 +115,7 @@ export default function Navbar() {
           }`}
       >
         <div className="flex items-center">
-          {navItems.map((item, index) => {
+          {navSections.map((item, index) => {
             const isActive = activeSection === item.id;
             return (
               <Link
@@ -160,7 +129,7 @@ export default function Navbar() {
                 aria-label={item.label}
                 title={item.label}
               >
-                <div className="flex-shrink-0">{item.icon}</div>
+                <div className="flex-shrink-0">{navIconMap[item.icon]}</div>
                 <span
                   className={`flex items-center overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-500 ${
                     isActive
@@ -202,18 +171,18 @@ export default function Navbar() {
           }`}
       >
         <div className="flex items-center gap-4 pl-4 pr-2 md:pl-6">
-          {socialLinks.map((link) => (
+          {dockSocialLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              download={link.download ? "Rifqis_Sakha_CV.pdf" : undefined}
+              download={link.download}
               className="flex-shrink-0 py-2 transition-all hover:scale-110 hover:text-blue-500"
               aria-label={link.label}
               title={link.label}
             >
-              {link.icon}
+              {socialIconMap[link.icon]}
             </Link>
           ))}
         </div>

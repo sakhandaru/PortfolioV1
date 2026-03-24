@@ -8,6 +8,7 @@ import {
   Environment,
   Lightformer,
 } from "@react-three/drei";
+import { mediaContent } from "@/content/media";
 import {
   BallCollider,
   CuboidCollider,
@@ -20,11 +21,8 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 
-// replace with your own imports, see the usage snippet for details
-// const cardGLB = "./card.glb";
-// const lanyard = "./lanyard.png";
-const cardGLB = '/assets/lanyard/Card.glb';
-const lanyard = '/assets/lanyard/Lanyard.png';
+const cardGLB = mediaContent.lanyard.cardModel;
+const lanyard = mediaContent.lanyard.texture;
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 

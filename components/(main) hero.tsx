@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WordRotate } from "@/components/ux/word-rotate";
+import { heroContent } from "@/content/hero";
+import { mediaContent } from "@/content/media";
 import PhotoCircle from "./photo-circle";
 import StickerBounce from "@/components/ui/StickerPeel";
 
@@ -86,7 +88,7 @@ export default function Hero() {
     >
         {stickerPositions.stickerDua && (
           <StickerBounce
-            imageSrc="/sticker2.svg"
+            imageSrc={mediaContent.hero.stickers.stickerDua}
             width={350}
             initialPosition={stickerPositions.stickerDua}
             className="z-11"
@@ -94,17 +96,17 @@ export default function Hero() {
         )}
         {stickerPositions.stickerSatu && (
           <StickerBounce
-            imageSrc="/sticker1.svg"
+            imageSrc={mediaContent.hero.stickers.stickerSatu}
             width={350}
             initialPosition={stickerPositions.stickerSatu}
             className="z-10 hover:z-20"
-            href="/Rifqis_Sakha_CV.pdf"
-            download="Rifqis_Sakha_CV.pdf"
+            href={mediaContent.documents.cv.href}
+            download={mediaContent.documents.cv.download}
           />
         )}
         {stickerPositions.stickerTiga && (
           <StickerBounce
-            imageSrc="/sticker3.svg"
+            imageSrc={mediaContent.hero.stickers.stickerTiga}
             width={350}
             initialPosition={stickerPositions.stickerTiga}
             className="z-12"
@@ -112,7 +114,7 @@ export default function Hero() {
         )}
         {stickerPositions.stickerEmpat && (
           <StickerBounce
-            imageSrc="/sticker4.svg"
+            imageSrc={mediaContent.hero.stickers.stickerEmpat}
             width={350}
             initialPosition={stickerPositions.stickerEmpat}
             className="z-12"
@@ -126,18 +128,13 @@ export default function Hero() {
               className="pointer-events-none whitespace-pre-wrap text-black dark:text-white bg-clip-text 
                text-6xl sm:text-6xl md:text-8xl font-semibold leading-none"
             >
-              Hi dude!!
+              {heroContent.title}
             </h1>
           </div>
 
           <WordRotate
             className="text-2xl text-black dark:text-neutral-300 mt-4"
-            words={[
-              "Welcome 🙌",
-              "scroll slowly 🐢",
-              "drag the sticker 🏷️",
-              "mewing 🤫🧏‍♂️",
-            ]}
+            words={[...heroContent.rotatingWords]}
           />
         </div>
     </section>

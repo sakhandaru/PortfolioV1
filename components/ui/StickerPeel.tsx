@@ -92,7 +92,7 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
       }
       document.body.style.overflow = "";
     };
-  }, [initialPosition, rotationFactor, bounceEase]);
+  }, [initialPosition, rotationFactor, bounceEase, href]);
 
   const imgContent = (
     <Image
