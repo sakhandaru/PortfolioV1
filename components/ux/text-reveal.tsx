@@ -49,29 +49,19 @@ export const TextReveal: FC<TextRevealProps> = ({ title, children }) => {
   const words = children.split(" ");
 
   return (
-    <div
-      ref={targetRef}
-      className={cn(
-        "relative z-0 h-[120vh] bg-gray-100 dark:bg-black",
-      )}
-    >
+    <div ref={targetRef} className={cn("relative z-0 h-[160vh] md:h-[120vh] bg-gray-100 dark:bg-black")}>
       <div
         className={
-          "sticky top-0 mx-auto flex items-start justify-center min-h-[50vh] px-[1rem] pt-[100px] sm:pt-[120px]"
+          "sticky top-0 mx-auto flex items-start justify-center min-h-[50vh] px-[1rem] pt-10 sm:pt-[100px] md:pt-[120px]"
         }
       >
-        {/* Container untuk judul dan paragraf agar sejajar */}
         <div className="w-full max-w-6xl">
-          {/* Judul */}
           {title && (
-            <a href="/DraftTA" className="hover:underline">
-              <h2 className="text-3xl font-bold text-black dark:text-white md:text-4xl lg:text-5xl mb-6">
-                {title}
-              </h2>
-            </a>
+            <h2 className="mb-6 text-3xl font-bold text-black md:text-4xl lg:text-5xl dark:text-white">
+              {title}
+            </h2>
           )}
 
-          {/* Container paragraf dengan lebar yang dipersempit */}
           <div className="max-w-7xl">
             <span
               className={

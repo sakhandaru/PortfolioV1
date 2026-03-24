@@ -7,16 +7,14 @@ import { useGSAP } from "@gsap/react";
 import ContactMe from "./(main) contact";
 import { RuningText } from "./runing-text";
 import Lanyard from "./ui/Lanyard";
-import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function PreviousSection() {
   return (
-    <div className="bg-gray-100 text-gray-800 dark:bg-black dark:text-gray-100 flex flex-col justify-center items-center p-10">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-6 py-10 text-gray-800 dark:bg-black dark:text-gray-100">
       <RuningText />
       <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
-      <div className="flex flex-col items-center mt-8"></div>
     </div>
   );
 }
@@ -34,13 +32,11 @@ export default function ContactReveal() {
           pin: true,
           start: "top top",
           end: () => {
-            // Hitung tinggi PreviousSection + ContactMe + extra scroll
             const extra = 300;
             const contactHeight = contactSection.current?.offsetHeight || 0;
             return `+=${window.innerHeight + contactHeight + extra}`;
           },
           scrub: 1,
-          // markers: true,
         },
       });
 
@@ -49,7 +45,6 @@ export default function ContactReveal() {
         ease: "none",
       });
 
-      // Refresh setelah semua asset & layout siap
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 100);
@@ -59,12 +54,10 @@ export default function ContactReveal() {
 
   return (
     <div ref={container} className="relative h-screen w-full overflow-hidden">
-      {/* Bagian atas yang akan bergerak */}
       <div ref={previousSection} className="relative h-full w-full z-10">
         <PreviousSection />
       </div>
 
-      {/* ContactMe di bawah */}
       <div ref={contactSection} className="absolute top-0 left-0 w-full">
         <ContactMe />
       </div>

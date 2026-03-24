@@ -3,12 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/ux/marquee";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-// Impor ikon dari lucide-react sudah dihapus karena tidak lagi digunakan
 
-// Data pengalaman kerja dengan properti logoUrl untuk gambar
 export const workExperience = [
   {
     logoUrl: "/experience/tvku.png",
@@ -40,7 +35,7 @@ export const workExperience = [
     dateRange: "2024",
     duration: "Contract",
     description:
-      "Took ownership of an existing custom internal system built with Laravel, handling ongoing maintenance, bug resolution, and feature continuity to ensure stable day-to-day operations.",
+      "Took ownership of an existing Laravel system, handling maintenance, bug fixes, and feature continuity to keep daily operations stable.",
   },
   {
     logoUrl: "/experience/doscom.svg",
@@ -52,7 +47,6 @@ export const workExperience = [
   },
 ];
 
-// Komponen Card yang telah dimodifikasi untuk menampilkan logo
 const ReviewCard = ({
   logoUrl,
   title,
@@ -77,12 +71,12 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-4">
-        <img
+        <Image
           src={logoUrl}
           alt={`Logo ${title}`}
           width={56}
           height={56}
-          className="h-14 w-14 rounded-md object-contain" // Kelas untuk membuat gambar proporsional
+          className="h-14 w-14 rounded-md object-contain"
         />
         <div className="flex flex-col">
           <figcaption className="text-lg font-medium leading-snug dark:text-white">
@@ -100,7 +94,6 @@ const ReviewCard = ({
   );
 };
 
-// Komponen Utama Marquee
 export function MarqueeDemo() {
   return (
     <>
@@ -117,7 +110,6 @@ export function MarqueeDemo() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-gray-100 to-transparent dark:from-black"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-gray-100 to-transparent dark:from-black"></div>
       </div>
-      
     </>
   );
 }

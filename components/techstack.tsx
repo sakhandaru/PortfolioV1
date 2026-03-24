@@ -1,9 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Dock, DockIcon } from "@/components/ux/dock";
 import Magnetic from "@/components/ux/magnetic";
 
 export const techIcons = [
@@ -63,6 +62,9 @@ export function TechStackGrid() {
                 <img
                   src={icon.src}
                   alt={icon.name}
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
                   className={`w-full h-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${icon.className || ""}`}
                 />
               </div>
@@ -77,7 +79,5 @@ export function TechStackGrid() {
   );
 }
 
-// Kita overwrite TechStackDock agar langsung merender versi Grid
-// sehingga tak perlu merefaktor file import
 export const TechStackDock = TechStackGrid;
 export const DockDemo = TechStackGrid;

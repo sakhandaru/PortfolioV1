@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUpRight, Github } from "lucide-react";
-import { Button } from "./ui/button";
 
 export default function Project() {
   const projects = [
@@ -174,10 +174,12 @@ export default function Project() {
               {/* 1. Image Mockup (5 Columns) */}
               <div className="lg:col-span-5 flex flex-col justify-center transition-transform duration-500 hover:scale-[1.02]">
                 {project.image ? (
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-contain drop-shadow-md"
+                    width={960}
+                    height={720}
+                    className="h-auto w-full object-contain drop-shadow-md"
                   />
                 ) : (
                   <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">

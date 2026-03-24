@@ -5,27 +5,53 @@ import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WordRotate } from "@/components/ux/word-rotate";
 import PhotoCircle from "./photo-circle";
-import StickerBounce from "@/components/ui/StickerPeel"; // Pastikan path ini benar
+import StickerBounce from "@/components/ui/StickerPeel";
 
 gsap.registerPlugin(ScrollTrigger);
 
+type StickerPositions = {
+  stickerDua: { x: number; y: number } | null;
+  stickerSatu: { x: number; y: number } | null;
+  stickerTiga: { x: number; y: number } | null;
+  stickerEmpat: { x: number; y: number } | null;
+};
+
+function getStickerPositions(width: number): StickerPositions {
+  if (width <= 768) {
+    return {
+      stickerSatu: { x: 0, y: 150 },
+      stickerDua: { x: 0, y: -200 },
+      stickerTiga: { x: 0, y: -700 },
+      stickerEmpat: { x: 0, y: -700 },
+    };
+  }
+
+  if (width <= 1024) {
+    return {
+      stickerSatu: { x: -350, y: -200 },
+      stickerDua: { x: 400, y: 200 },
+      stickerTiga: { x: -350, y: 200 },
+      stickerEmpat: { x: 350, y: -200 },
+    };
+  }
+
+  return {
+    stickerSatu: { x: -350, y: -200 },
+    stickerDua: { x: 400, y: 200 },
+    stickerTiga: { x: -350, y: 200 },
+    stickerEmpat: { x: 370, y: -200 },
+  };
+}
+
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement | null>(null);
-
-  // State untuk menyimpan posisi stiker, awalnya null agar tidak error di server
-  const [stickerPositions, setStickerPositions] = useState<{
-    stickerDua: { x: number; y: number } | null;
-    stickerSatu: { x: number; y: number } | null;
-    stickerTiga: { x: number; y: number } | null;
-    stickerEmpat: { x: number; y: number } | null;
-  }>({
+  const [stickerPositions, setStickerPositions] = useState<StickerPositions>({
     stickerDua: null,
     stickerSatu: null,
     stickerTiga: null,
     stickerEmpat: null,
   });
 
-  // Efek untuk ScrollTrigger (tidak diubah)
   useEffect(() => {
     if (!heroRef.current) return;
 
@@ -45,129 +71,42 @@ export default function Hero() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        // MOBILE
-        setStickerPositions({
-          stickerSatu: {
-            x: 0,
-            y: -700,
-          },
-          stickerDua: {
-            x: 0,
-            y: -200,
-          },
-          stickerTiga: {
-            x: 0,
-            y: 150,
-          },
-          stickerEmpat: {
-            x: 0,
-            y: -700,
-          },
-        });
-      } else if (769 <= window.innerWidth && window.innerWidth <= 1024) {
-        // TABLET
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 350,
-            y: -200,
-          },
-        });
-      } else if (1025 <= window.innerWidth && window.innerWidth <= 1440) {
-        // DESKTOP KECIL
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 370,
-            y: -200,
-          },
-        });
-      } else {
-        // DESKTOP BESAR
-        setStickerPositions({
-          stickerSatu: {
-            x: -350,
-            y: -200,
-          },
-          stickerDua: {
-            x: 400,
-            y: 200,
-          },
-          stickerTiga: {
-            x: -350,
-            y: 200,
-          },
-          stickerEmpat: {
-            x: 370,
-            y: -200,
-          },
-        });
-      }
+      setStickerPositions(getStickerPositions(window.innerWidth));
     };
 
-    // Panggil sekali saat komponen dimuat
     handleResize();
-
-    // Tambahkan listener untuk dijalankan setiap kali ukuran jendela berubah
     window.addEventListener("resize", handleResize);
-
-    // Cleanup: Hapus listener saat komponen tidak lagi digunakan
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Dependensi kosong agar hanya berjalan sekali saat komponen mount
+  }, []);
 
   return (
-    <>
-      <section
-        ref={heroRef}
-        className="w-full min-h-screen flex items-center justify-center bg-white dark:bg-[#121212] py-32 md:py-48 relative overflow-hidden" // Tambahkan overflow-hidden
-      >
-        {/* Render stiker kanan Satu secara kondisional dengan posisi dari state */}
+    <section
+      ref={heroRef}
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white py-32 md:py-48 dark:bg-[#121212]"
+    >
         {stickerPositions.stickerDua && (
           <StickerBounce
             imageSrc="/sticker2.svg"
             width={350}
-            initialPosition={stickerPositions.stickerDua} // <-- MENGGUNAKAN STATE
+            initialPosition={stickerPositions.stickerDua}
             className="z-11"
           />
         )}
-
-        {/* Render stiker kiri Dua secara kondisional dengan posisi dari state */}
         {stickerPositions.stickerSatu && (
           <StickerBounce
             imageSrc="/sticker1.svg"
             width={350}
-            initialPosition={stickerPositions.stickerSatu} // <-- MENGGUNAKAN STATE
-            className="z-10"
+            initialPosition={stickerPositions.stickerSatu}
+            className="z-10 hover:z-20"
+            href="/Rifqis_Sakha_CV.pdf"
+            download="Rifqis_Sakha_CV.pdf"
           />
         )}
         {stickerPositions.stickerTiga && (
           <StickerBounce
             imageSrc="/sticker3.svg"
             width={350}
-            initialPosition={stickerPositions.stickerTiga} // <-- MENGGUNAKAN STATE2
+            initialPosition={stickerPositions.stickerTiga}
             className="z-12"
           />
         )}
@@ -175,15 +114,13 @@ export default function Hero() {
           <StickerBounce
             imageSrc="/sticker4.svg"
             width={350}
-            initialPosition={stickerPositions.stickerEmpat} // <-- MENGGUNAKAN STATE2
+            initialPosition={stickerPositions.stickerEmpat}
             className="z-12"
           />
         )}
 
         <div className="container mx-auto flex max-w-3xl flex-col items-center text-center relative z-10">
           <div className="flex items-center gap-4">
-            {" "}
-            {/* <p>{window.innerWidth}</p> */}
             <PhotoCircle />
             <h1
               className="pointer-events-none whitespace-pre-wrap text-black dark:text-white bg-clip-text 
@@ -203,7 +140,6 @@ export default function Hero() {
             ]}
           />
         </div>
-      </section>
-    </>
+    </section>
   );
 }

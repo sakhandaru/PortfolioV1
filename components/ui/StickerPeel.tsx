@@ -14,6 +14,8 @@ interface StickerBounceProps {
   bounceEase?: string;
   className?: string;
   initialPosition?: "center" | { x: number; y: number };
+  href?: string;
+  download?: string;
 }
 
 const StickerBounce: React.FC<StickerBounceProps> = ({
@@ -23,6 +25,8 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
   bounceEase = "elastic.out(1, 0.3)",
   className = "",
   initialPosition = "center",
+  href,
+  download,
 }) => {
   const dragTargetRef = useRef<HTMLDivElement>(null);
   const draggableInstanceRef = useRef<Draggable | null>(null);
@@ -31,19 +35,14 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
     const target = dragTargetRef.current;
     if (!target) return;
 
-    // atur posisi awal
     if (initialPosition !== "center" && typeof initialPosition === "object") {
       gsap.set(target, { x: initialPosition.x, y: initialPosition.y });
     }
 
-    // cek apakah mobile
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      // jangan aktifkan draggable di mobile
+    if (window.innerWidth <= 768) {
       return;
     }
 
-    // Animasi wiggle awal untuk memberi tahu pengguna bahwa stiker interaktif
     gsap.fromTo(
       target,
       { rotation: -5 },
@@ -59,28 +58,33 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
       },
     );
 
-    const draggable = Draggable.create(target, {
-      type: "x,y",
-      inertia: true,
-      bounds: window,
-      onDrag(this: Draggable) {
-        const rot = gsap.utils.clamp(-15, 15, this.deltaX * rotationFactor);
-        gsap.to(target, { rotation: rot, duration: 0.15, ease: "power1.out" });
-      },
-      onDragEnd() {
-        gsap.to(target, { rotation: 0, duration: 0.8, ease: bounceEase });
-      },
-      onDragStart() {
-        target.style.cursor = "grabbing";
-        document.body.style.overflow = "hidden";
-      },
-      onRelease() {
-        target.style.cursor = "grab";
-        document.body.style.overflow = "";
-      },
-    });
+    const handleDrag = () => {
+      const deltaX = draggableInstanceRef.current?.deltaX ?? 0;
+      const rot = gsap.utils.clamp(-15, 15, deltaX * rotationFactor);
+      gsap.to(target, { rotation: rot, duration: 0.15, ease: "power1.out" });
+    };
 
-    draggableInstanceRef.current = draggable[0];
+    if (!href) {
+      const draggable = Draggable.create(target, {
+        type: "x,y",
+        inertia: true,
+        bounds: window,
+        onDrag: handleDrag,
+        onDragEnd() {
+          gsap.to(target, { rotation: 0, duration: 0.8, ease: bounceEase });
+        },
+        onDragStart() {
+          target.style.cursor = "grabbing";
+          document.body.style.overflow = "hidden";
+        },
+        onRelease() {
+          target.style.cursor = "grab";
+          document.body.style.overflow = "";
+        },
+      });
+
+      draggableInstanceRef.current = draggable[0];
+    }
 
     return () => {
       if (draggableInstanceRef.current) {
@@ -90,19 +94,31 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
     };
   }, [initialPosition, rotationFactor, bounceEase]);
 
+  const imgContent = (
+    <Image
+      src={imageSrc}
+      alt="Sticker"
+      width={width}
+      height={width}
+      className={`block h-auto w-full ${href ? "cursor-pointer" : "pointer-events-none"}`}
+      draggable={false}
+      onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
+    />
+  );
+
   return (
     <div
       ref={dragTargetRef}
       className={`absolute select-none ${className}`}
       style={{ width }}
     >
-      <img
-        src={imageSrc}
-        alt="Sticker"
-        className="w-full h-auto block pointer-events-none"
-        draggable={false}
-        onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
-      />
+      {href ? (
+        <a href={href} download={download} target="_blank" rel="noopener noreferrer" className="block w-full h-full hover:scale-105 transition-transform pointer-events-auto">
+          {imgContent}
+        </a>
+      ) : (
+        imgContent
+      )}
     </div>
   );
 };
