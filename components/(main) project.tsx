@@ -1,8 +1,115 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Github } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { ArrowUpRight, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { projectsContent } from "@/content/projects";
+
+function ProjectImages({ images, title }: { images: string[]; title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
+      if (index !== currentIndex) {
+        setCurrentIndex(index);
+      }
+    }
+  };
+
+  const scrollToImage = (index: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: index * scrollRef.current.clientWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const nextImage = () => {
+    const nextIdx = (currentIndex + 1) % images.length;
+    scrollToImage(nextIdx);
+  };
+
+  const prevImage = () => {
+    const prevIdx = (currentIndex - 1 + images.length) % images.length;
+    scrollToImage(prevIdx);
+  };
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+        Image placeholder (.webp)
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative group overflow-hidden rounded-lg">
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide aspect-[4/3] w-full bg-neutral-100 dark:bg-neutral-900 transition-transform duration-500 hover:scale-[1.01]"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {images.map((image, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 w-full h-full snap-center relative"
+          >
+            <Image
+              src={image}
+              alt={`${title} - image ${i + 1}`}
+              fill
+              className="object-contain drop-shadow-md p-4"
+              priority={i === 0}
+            />
+          </div>
+        ))}
+      </div>
+
+      {images.length > 1 && (
+        <>
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-black/80 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10 hover:bg-white dark:hover:bg-black"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={18} className="text-neutral-900 dark:text-white" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-black/80 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10 hover:bg-white dark:hover:bg-black"
+            aria-label="Next image"
+          >
+            <ChevronRight size={18} className="text-neutral-900 dark:text-white" />
+          </button>
+
+          {/* Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollToImage(i)}
+                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                  i === currentIndex
+                    ? "bg-neutral-900 dark:bg-white w-4"
+                    : "bg-neutral-400 dark:bg-neutral-600"
+                }`}
+                aria-label={`Go to image ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function Project() {
   const iconMap = {
@@ -27,20 +134,8 @@ export default function Project() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-10 lg:py-16 border-b border-neutral-200 dark:border-neutral-800"
             >
               {/* 1. Image Mockup (5 Columns) */}
-              <div className="lg:col-span-5 flex flex-col justify-center transition-transform duration-500 hover:scale-[1.02]">
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={960}
-                    height={720}
-                    className="h-auto w-full object-contain drop-shadow-md"
-                  />
-                ) : (
-                  <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
-                    Image placeholder (.webp)
-                  </div>
-                )}
+              <div className="lg:col-span-5 flex flex-col justify-center">
+                <ProjectImages images={project.images} title={project.title} />
               </div>
 
               {/* 2. Middle: Title, Tech Tags & Description (4 Columns) */}

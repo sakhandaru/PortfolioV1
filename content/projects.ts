@@ -6,7 +6,7 @@ export type ProjectLink = {
 
 export type ProjectItem = {
   tag: string;
-  image: string;
+  images: string[];
   title: string;
   description: string;
   techStack: string[];
@@ -19,7 +19,10 @@ export const projectsContent = {
   items: [
     {
       tag: "Completed",
-      image: "/images/projects/test-mock.webp",
+      images: [
+        "/images/projects/test-mock.webp",
+        "/images/projects/test-mock.webp" // Gambar yang sama untuk demo
+      ],
       title: "Custom ERP — Aruna Cipta Perkasa",
       description:
         "Highly customized ERP with 9 user roles, full N8N workflow automation, and AI integration. Includes the company's official website.",
@@ -35,7 +38,7 @@ export const projectsContent = {
     },
     {
       tag: "Completed",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Custom ERP — PPRQ Annasimiyyah",
       description:
         "ERP covering academics, syahriah payments, and permissions. Multi-role portal with official website and downloadable brochure.",
@@ -51,7 +54,7 @@ export const projectsContent = {
     },
     {
       tag: "Completed",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Email Blasting System — EmtekDigital",
       description:
         "Scalable Node.js email automation tool with scheduling, open rate tracking, and audience segmentation for an EO agency.",
@@ -67,7 +70,7 @@ export const projectsContent = {
     },
     {
       tag: "Completed",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "LAZ MAJT Web System",
       description:
         "ERP for zakat, infaq, and donation management with public donation portal, zakat calculator, static CMS, and official website.",
@@ -83,7 +86,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Landing Page TVKU",
       description:
         "A modern, responsive landing page for TVKU, built with Next.js to ensure fast performance and SEO. It's designed for a seamless user experience, focusing on modern design and accessibility.",
@@ -99,7 +102,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Chatbot Ai Assistant",
       description:
         "An intelligent AI chatbot for the TVKU platform, designed to boost user engagement with real-time, personalized support. It leverages modern AI and NLP to create an intuitive, user-centric experience.",
@@ -115,7 +118,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Ezenda SaaS",
       description:
         "A smart SaaS POS solution for service businesses like salons or clinics. It simplifies booking, payment, and inventory management with an intuitive, customizable dashboard designed to streamline operations.",
@@ -131,7 +134,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Ezenda Template",
       description:
         "A versatile SaaS POS template for service-based businesses like salons or clinics. It features a customizable dashboard to manage appointments, payments, and inventory, all designed to improve operational efficiency.",
@@ -151,7 +154,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      image: "/images/projects/test-mock.webp",
+      images: ["/images/projects/test-mock.webp"],
       title: "Compress CLI",
       description:
         "Compress CLI is a command-line tool designed to optimize and compress files efficiently, making it easier for developers to manage their assets and improve application performance.",
