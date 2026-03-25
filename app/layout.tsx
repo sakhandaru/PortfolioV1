@@ -23,6 +23,25 @@ export default function RootLayout({
           <SideNavbar />
           {children}
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Rifqi Sakha",
+              url: "https://www.rifqisakha.my.id",
+              jobTitle: "ERP-focused Full Stack Developer",
+              sameAs: [
+                "https://github.com/sakhandaru",
+                "https://linkedin.com/in/Rifqis Sakha",
+                "https://instagram.com/sakhandaru",
+              ],
+              description:
+                "ERP-focused Full Stack Developer specializing in custom ERP systems, business automation, and multi-role web platforms.",
+            }),
+          }}
+        />
       </body>
     </html>
   );

@@ -2,8 +2,8 @@ export const heroContent = {
   title: "Hi dude!!",
   rotatingWords: [
     "Welcome 🙌",
+    "I'm Sakhandaru 😼",
     "scroll slowly 🐢",
-    "drag the sticker 🏷️",
     "mewing 🤫🧏‍♂️",
   ],
 } as const;
