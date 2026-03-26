@@ -19,9 +19,9 @@ export const projectsContent = {
   items: [
     {
       tag: "Concept",
-      images: ["/images/projects/odoo1.png", 
-        "/images/projects/odoo2.png", 
-        "/images/projects/odoo3.png"],
+      images: ["/images/projects/odoo1.webp", 
+        "/images/projects/odoo2.webp", 
+        "/images/projects/odoo3.webp"],
       title: "Odoo Module Contractor Management",
       description:
         "An Odoo module for contractor management, designed to streamline project workflows and enhance operational efficiency.",
@@ -38,9 +38,9 @@ export const projectsContent = {
     {
       tag: "Completed",
       images: [
-        "/images/projects/arcade1.png",
-        "/images/projects/arcade2.png",
-        "/images/projects/arcade3.png"
+        "/images/projects/arcade1.webp",
+        "/images/projects/arcade2.webp",
+        "/images/projects/arcade3.webp"
       ],
       title: "Custom ERP — Aruna Cipta Perkasa",
       description:
@@ -58,9 +58,9 @@ export const projectsContent = {
     {
       tag: "Completed",
       images: [
-        "/images/projects/sipprq1.png",
-        "/images/projects/sipprq2.png",
-        "/images/projects/sipprq3.png"
+        "/images/projects/sipprq1.webp",
+        "/images/projects/sipprq2.webp",
+        "/images/projects/sipprq3.webp"
       ],
       title: "Custom ERP — PPRQ Annasimiyyah",
       description:
@@ -78,9 +78,9 @@ export const projectsContent = {
     {
       tag: "Completed",
       images: [
-        "/images/projects/EmailBlasting.webp",
-        "/images/projects/email2.png",
-        "/images/projects/email3.png" // Gambar yang sama untuk demo
+        "/images/projects/email1.webp",
+        "/images/projects/email2.webp",
+        "/images/projects/email3.webp" // Gambar yang sama untuk demo
       ],
       title: "Email Blasting System — EmtekDigital",
       description:
@@ -98,8 +98,8 @@ export const projectsContent = {
     {
       tag: "Completed",
       images: [
-        "/images/projects/LAZ 1.png",
-        "/images/projects/LAZ 2.png",
+        "/images/projects/LAZ 1.webp",
+        "/images/projects/LAZ 2.webp",
       ],
       title: "LAZ MAJT Web System",
       description:
@@ -117,7 +117,10 @@ export const projectsContent = {
     {
       tag: "Concept",
       images: 
-      ["/images/projects/tvku1.png", "/images/projects/tvku2.png", "/images/projects/tvku3.png", "/images/projects/tvku4.png"],
+      ["/images/projects/tvku1.webp", 
+        "/images/projects/tvku2.webp", 
+        "/images/projects/tvku3.webp", 
+        "/images/projects/tvku4.webp"],
       title: "Landing Page TVKU",
       description:
         "A modern, responsive landing page for TVKU, built with Next.js to ensure fast performance and SEO. It's designed for a seamless user experience, focusing on modern design and accessibility.",
@@ -133,7 +136,7 @@ export const projectsContent = {
     },
     {
       tag: "Concept",
-      images: ["/images/projects/ai1.png"],
+      images: ["/images/projects/ai1.webp"],
       title: "Chatbot Ai Assistant",
       description:
         "An intelligent AI chatbot for the TVKU platform, designed to boost user engagement with real-time, personalized support. It leverages modern AI and NLP to create an intuitive, user-centric experience.",
