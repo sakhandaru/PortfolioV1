@@ -18,6 +18,24 @@ export const projectsContent = {
   title: "My Projects 🧑‍💻",
   items: [
     {
+      tag: "Concept",
+      images: ["/images/projects/odoo1.png", 
+        "/images/projects/odoo2.png", 
+        "/images/projects/odoo3.png"],
+      title: "Odoo Module Contractor Management",
+      description:
+        "An Odoo module for contractor management, designed to streamline project workflows and enhance operational efficiency.",
+      techStack: ["Odoo", "Python", "XML"],
+      info: [
+        { label: "Year", value: "2025" },
+        { label: "Role", value: "Odoo Developer" },
+      ],
+      links: [
+        { label: "Live Demo", icon: "external", href: "#" },
+        { label: "See on GitHub", icon: "github", href: "https://github.com/sakhandaru/odoo-dev" },
+      ],
+    },
+    {
       tag: "Completed",
       images: [
         "/images/projects/arcade1.png",
@@ -129,6 +147,7 @@ export const projectsContent = {
         { label: "See on GitHub", icon: "github", href: "#" },
       ],
     },
+    
     // {
     //   tag: "Concept",
     //   images: ["/images/projects/test-mock.webp"],
