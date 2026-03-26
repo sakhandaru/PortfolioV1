@@ -1,22 +1,9 @@
 "use client";
 
-import {
-  FaInstagram,
-  FaLinkedin,
-  FaGithub,
-  FaWhatsapp,
-} from "react-icons/fa6";
 import Link from "next/link";
-import Magnetic from "@/components/ux/magnetic";
 import { contactContent } from "@/content/contact";
 
 export default function ContactSection() {
-  const socialIconMap = {
-    whatsapp: <FaWhatsapp size={20} />,
-    instagram: <FaInstagram size={20} />,
-    linkedin: <FaLinkedin size={20} />,
-    github: <FaGithub size={20} />,
-  } as const;
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between bg-black text-white dark:bg-white dark:text-black px-6 py-12">
@@ -54,24 +41,20 @@ export default function ContactSection() {
         </h1>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 text-xs sm:text-sm font-light">
-        <div className="text-center sm:text-left">
-          <Link href={contactContent.email.href} className="hover:underline">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end items-center text-center sm:text-left text-xs sm:text-sm font-light gap-1 sm:gap-0">
+        {/* Mobile: email + location/year rapat di tengah */}
+        <div className="space-y-1">
+          <Link href={contactContent.email.href} className="hover:underline block">
             {contactContent.email.label}
           </Link>
+          <div className="sm:hidden font-mono space-y-0.5">
+            <p>{contactContent.location}</p>
+            <p>{contactContent.year}</p>
+          </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 my-8 sm:my-0">
-          {contactContent.socials.map((social) => (
-            <Magnetic key={social.label} intensity={0.3}>
-              <Link href={social.href} target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-800 dark:border-neutral-200 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-300">
-                {socialIconMap[social.icon]}
-              </Link>
-            </Magnetic>
-          ))}
-        </div>
-
-        <div className="text-center sm:text-right font-mono">
+        {/* Desktop: location/year di kanan bawah */}
+        <div className="hidden sm:block text-right font-mono">
           <p>{contactContent.location}</p>
           <p>{contactContent.year}</p>
         </div>
