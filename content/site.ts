@@ -94,7 +94,7 @@ export const navSections: NavSection[] = [
 export const dockSocialLinks: DockSocialLink[] = [
   {
     href: mediaContent.documents.cv.href,
-    label: "Download CV",
+    label: "Resume",
     icon: "file",
     download: mediaContent.documents.cv.download,
   },

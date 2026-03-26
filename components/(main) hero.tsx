@@ -21,8 +21,8 @@ type StickerPositions = {
 function getStickerPositions(width: number): StickerPositions {
   if (width <= 768) {
     return {
-      stickerSatu: { x: 0, y: 150 },
-      stickerDua: { x: 0, y: -200 },
+      stickerSatu: { x: 0, y: 167 },
+      stickerDua: { x: 0, y: -240 },
       stickerTiga: { x: 0, y: -700 },
       stickerEmpat: { x: 0, y: -700 },
     };

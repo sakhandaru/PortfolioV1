@@ -11,12 +11,14 @@ import {
   FileText,
 } from "lucide-react";
 import {
-  FaInstagram,
-  FaLinkedin,
-  FaGithub,
-  FaGitlab,
-  FaWhatsapp,
-} from "react-icons/fa6";
+  RiWhatsappLine,
+  RiInstagramLine,
+  RiLinkedinBoxLine,
+  RiGithubLine,
+  RiGitlabLine,
+  RiLinksLine,
+  // RiLinksLine,
+} from "@remixicon/react";
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
@@ -35,7 +37,15 @@ export default function Navbar() {
   const mounted = useMounted();
   const [isSocialOpen, setIsSocialOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [copied, setCopied] = useState(false);
   const isBottomRef = useRef(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.origin).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
   const navIconMap = {
     home: <Home size={20} />,
     user: <User size={20} />,
@@ -43,11 +53,11 @@ export default function Navbar() {
   } as const;
   const socialIconMap = {
     file: <FileText size={20} />,
-    whatsapp: <FaWhatsapp size={20} />,
-    instagram: <FaInstagram size={20} />,
-    linkedin: <FaLinkedin size={20} />,
-    github: <FaGithub size={20} />,
-    gitlab: <FaGitlab size={20} />,
+    whatsapp: <RiWhatsappLine size={20} />,
+    instagram: <RiInstagramLine size={20} />,
+    linkedin: <RiLinkedinBoxLine size={23} />,
+    github: <RiGithubLine size={20} />,
+    gitlab: <RiGitlabLine size={20} />,
   } as const;
 
   useEffect(() => {
@@ -148,7 +158,7 @@ export default function Navbar() {
       <button
         onClick={() => setIsSocialOpen(!isSocialOpen)}
         className={`z-10 flex min-w-[40px] flex-shrink-0 justify-center py-2 transition-all hover:scale-110 hover:opacity-80 ${
-            isSocialOpen ? "text-blue-500" : ""
+            isSocialOpen ? "text-red-500" : ""
           }`}
         aria-label={isSocialOpen ? "Close Social Media" : "Open Social Media"}
       >
@@ -170,7 +180,7 @@ export default function Navbar() {
             isSocialOpen ? "max-w-[300px] opacity-100" : "max-w-0 opacity-0"
           }`}
       >
-        <div className="flex items-center gap-4 pl-4 pr-2 md:pl-6">
+        <div className="flex items-center gap-1 pl-4 pr-2 md:pl-6">
           {dockSocialLinks.map((link) => (
             <Link
               key={link.label}
@@ -178,13 +188,33 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               download={link.download}
-              className="flex-shrink-0 py-2 transition-all hover:scale-110 hover:text-blue-500"
+              className="group flex flex-shrink-0 items-center py-2 px-1 transition-all duration-500 hover:scale-105 "
               aria-label={link.label}
               title={link.label}
             >
-              {socialIconMap[link.icon]}
+              <div className="flex-shrink-0">{socialIconMap[link.icon]}</div>
+              <span className="flex items-center overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-500 ml-0 max-w-0 opacity-0 group-hover:ml-1.5 group-hover:max-w-[72px] group-hover:opacity-100">
+                {link.label}
+              </span>
             </Link>
           ))}
+
+          {/* Copy link button */}
+          <button
+            onClick={handleCopy}
+            className="group flex flex-shrink-0 items-center py-2 px-1 transition-all duration-500 hover:scale-105"
+            aria-label="Copy link"
+            title="Copy link"
+          >
+            <div className="flex-shrink-0">
+              <RiLinksLine size={20} className={copied ? "text-green-500" : ""} />
+            </div>
+            <span className={`flex items-center overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-500 ml-0 max-w-0 opacity-0 group-hover:ml-1.5 group-hover:max-w-[72px] group-hover:opacity-100 ${
+              copied ? "text-green-500" : ""
+            }`}>
+              {copied ? "Copied!" : "Copy"}
+            </span>
+          </button>
         </div>
       </div>
 

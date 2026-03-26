@@ -35,15 +35,18 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
     const target = dragTargetRef.current;
     if (!target) return;
 
+    // Selalu set posisi — baik mobile maupun desktop
     if (initialPosition !== "center" && typeof initialPosition === "object") {
       gsap.set(target, { x: initialPosition.x, y: initialPosition.y });
     }
 
+    // Skip drag & shake animation di mobile
     if (window.innerWidth <= 768) {
       return;
     }
 
-    gsap.fromTo(
+    // Simpan ref agar bisa di-kill saat cleanup
+    const shakeTween = gsap.fromTo(
       target,
       { rotation: -5 },
       {
@@ -87,12 +90,14 @@ const StickerBounce: React.FC<StickerBounceProps> = ({
     }
 
     return () => {
+      shakeTween.kill();
       if (draggableInstanceRef.current) {
         draggableInstanceRef.current.kill();
       }
       document.body.style.overflow = "";
     };
   }, [initialPosition, rotationFactor, bounceEase, href]);
+
 
   const imgContent = (
     <Image
