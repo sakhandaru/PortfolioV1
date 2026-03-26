@@ -6,10 +6,12 @@ import Hero from "@/components/(main) hero";
 import Projects from "@/components/(main) project";
 import ContactReveal from "@/components/contact-reveal";
 import { MarqueeDemo as Experience } from "@/components/experience";
+import PageTransition from "@/components/ux/page-transition";
 
 export default function Home() {
   return (
     <>
+      <PageTransition />
       <div id="hero"></div>
       <ScrollProgress className="top" />
       <div className="hidden sm:block">
