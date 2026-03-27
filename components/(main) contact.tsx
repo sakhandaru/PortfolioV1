@@ -36,9 +36,16 @@ export default function ContactSection() {
       </div>
 
       <div className="flex items-center justify-center text-center">
-        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-none">
-          {contactContent.nameLines[0]} <br /> {contactContent.nameLines[1]}
-        </h1>
+        <a 
+          href="https://sakhandaru.github.io/flappycommit/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="cursor-default select-none"
+        >
+          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-none transition-opacity hover:opacity-90">
+            {contactContent.nameLines[0]} <br /> {contactContent.nameLines[1]}
+          </h1>
+        </a>
       </div>
 
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end items-center text-center sm:text-left text-xs sm:text-sm font-light gap-1 sm:gap-0">

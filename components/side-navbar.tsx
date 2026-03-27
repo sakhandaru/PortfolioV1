@@ -55,7 +55,7 @@ export default function Navbar() {
     file: <FileText size={20} />,
     whatsapp: <RiWhatsappLine size={20} />,
     instagram: <RiInstagramLine size={20} />,
-    linkedin: <RiLinkedinBoxLine size={23} />,
+    linkedin: <RiLinkedinBoxLine size={21} />,
     github: <RiGithubLine size={20} />,
     gitlab: <RiGitlabLine size={20} />,
   } as const;
@@ -64,7 +64,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const isBottom =
         Math.ceil(window.innerHeight + window.scrollY) >=
-        document.documentElement.scrollHeight - 100;
+        document.documentElement.scrollHeight - 20;
 
       if (isBottom && !isBottomRef.current) {
         setIsSocialOpen(true);
@@ -106,15 +106,15 @@ export default function Navbar() {
   return (
     <div
       className={`
-          fixed left-1/2 -translate-x-1/2 z-50
+          fixed left-1/2 -translate-x-1/2 z-[10001]
           bottom-8 md:bottom-auto md:top-8
-          flex items-center justify-center
+          flex items-center justify-center pointer-events-auto
           px-3 sm:px-4 md:px-6
           rounded-full py-3 md:py-3 
           shadow-xl backdrop-blur-xl
           dark:bg-white dark:text-black bg-black text-white
           transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-          ${isSocialOpen ? "w-[90%] sm:w-min" : "w-auto max-w-sm"}
+          ${isSocialOpen ? "w-auto" : "w-auto max-w-sm"}
         `}
     >
       <div
@@ -218,7 +218,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="ml-2 flex items-center overflow-hidden border-l border-gray-300/20 pl-3 transition-all duration-500 md:ml-4 md:pl-4 dark:border-gray-700/50">
+      <div className={`ml-2 flex items-center overflow-hidden border-l border-gray-300/20 pl-3 transition-all duration-500 md:ml-4 md:pl-4 dark:border-gray-700/50 ${
+          isSocialOpen ? "max-w-0 opacity-0 ml-0 pl-0 border-none" : "max-w-[100px] opacity-100"
+        }`}>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="flex w-[40px] flex-shrink-0 justify-center p-2 transition-all hover:scale-110 hover:opacity-80"
