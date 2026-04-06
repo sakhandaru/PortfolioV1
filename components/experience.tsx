@@ -35,6 +35,7 @@ const ReviewCard = ({
           width={56}
           height={56}
           className="h-14 w-14 rounded-md object-contain"
+          unoptimized
         />
         <div className="flex flex-col">
           <figcaption className="text-lg font-medium leading-snug dark:text-white">
