@@ -13,6 +13,7 @@ import {
   ExternalLink,
   MapPin,
   Briefcase,
+  Printer,
 } from "lucide-react";
 import { projectsContent } from "@/content/projects";
 import { aboutContent } from "@/content/about";
@@ -70,7 +71,7 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
       </div>
 
       {images.length > 1 && (
-        <>
+        <div className="print:hidden">
           <button
             onClick={prevImage}
             className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-white/90 dark:bg-black/90 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
@@ -99,7 +100,7 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
               />
             ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
@@ -148,15 +149,19 @@ function CopyUrlButton() {
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function PortfolioPage() {
+  const handlePrint = () => {
+    window.print();
+  };
+
   const iconMap = {
     external: <ArrowUpRight size={14} />,
     github: <Github size={14} />,
   } as const;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
+    <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white print:bg-white print:text-black">
       {/* ── Header Strip ── */}
-      <div className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 backdrop-blur-sm sticky top-0 z-40">
+      <div className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 backdrop-blur-sm sticky top-0 z-40 print:hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -166,11 +171,20 @@ export default function PortfolioPage() {
               <span className="text-neutral-700 dark:text-neutral-200 font-semibold">portfolio</span>
             </p>
           </div>
-          <CopyUrlButton />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrint}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-neutral-900 text-sm font-mono font-medium transition-all"
+            >
+              <Printer size={14} />
+              <span className="hidden sm:inline">Save PDF</span>
+            </button>
+            <CopyUrlButton />
+          </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 print:py-0 print:space-y-10">
 
         {/* ── Profile Card ── */}
         <section className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
@@ -260,15 +274,15 @@ export default function PortfolioPage() {
 
         {/* ── Projects ── */}
         <section>
-          <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-8">
+          <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-8 print:text-neutral-600">
             Projects — {projectsContent.items.length} works
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 print:grid-cols-1 print:gap-8">
             {projectsContent.items.map((project, index) => (
               <article
                 key={index}
-                className="group flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/40 overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors"
+                className="group flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/40 overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors print:break-inside-avoid print:border-neutral-300 print:bg-white"
               >
                 {/* Image */}
                 <div className="p-3 pb-0">
@@ -353,7 +367,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* ── Footer ── */}
-        <footer className="border-t border-neutral-200 dark:border-neutral-800 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <footer className="border-t border-neutral-200 dark:border-neutral-800 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:hidden">
           <p className="text-xs font-mono text-neutral-400 dark:text-neutral-500">
             Open to new opportunities — reach out anytime.
           </p>
