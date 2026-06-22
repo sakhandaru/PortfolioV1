@@ -115,6 +115,7 @@ export default function Navbar() {
           dark:bg-white dark:text-black bg-black text-white
           transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
           ${isSocialOpen ? "w-auto" : "w-auto max-w-sm"}
+          print:hidden
         `}
     >
       <div

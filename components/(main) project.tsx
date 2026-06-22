@@ -67,6 +67,7 @@ function ProjectImages({ images, title }: { images: string[]; title: string }) {
               fill
               className="object-contain drop-shadow-md"
               priority={i === 0}
+              unoptimized
             />
           </div>
         ))}
