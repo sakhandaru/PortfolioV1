@@ -1,8 +1,8 @@
 export const mediaContent = {
   documents: {
     cv: {
-      href: "/documents/Rifqis_Sakha_CV.pdf",
-      download: "Rifqis_Sakha_CV.pdf",
+      href: "/arcipta.pdf",
+      download: "arcipta.pdf",
     },
   },
   profile: {

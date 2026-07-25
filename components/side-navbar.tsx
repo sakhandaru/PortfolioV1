@@ -33,7 +33,8 @@ function useMounted() {
 }
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const mounted = useMounted();
   const [isSocialOpen, setIsSocialOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -223,12 +224,12 @@ export default function Navbar() {
           isSocialOpen ? "max-w-0 opacity-0 ml-0 pl-0 border-none" : "max-w-[100px] opacity-100"
         }`}>
         <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(isDark ? "light" : "dark")}
           className="flex w-[40px] flex-shrink-0 justify-center p-2 transition-all hover:scale-110 hover:opacity-80"
           aria-label="Toggle Dark Mode"
         >
           {mounted ? (
-            theme === "dark" ? <Sun size={24} /> : <Moon size={24} />
+            isDark ? <Sun size={24} /> : <Moon size={24} />
           ) : null}
         </button>
       </div>
