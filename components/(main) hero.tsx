@@ -101,7 +101,6 @@ export default function Hero() {
             initialPosition={stickerPositions.stickerSatu}
             className="z-10 hover:z-20"
             href={mediaContent.documents.cv.href}
-            download={mediaContent.documents.cv.download}
           />
         )}
         {stickerPositions.stickerTiga && (

@@ -2,7 +2,6 @@ export const mediaContent = {
   documents: {
     cv: {
       href: "/arcipta.pdf",
-      download: "arcipta.pdf",
     },
   },
   profile: {

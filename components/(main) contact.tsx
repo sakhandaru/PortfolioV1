@@ -26,8 +26,8 @@ export default function ContactSection() {
           <br />
           <a
             href={contactContent.cv.href}
-            download={contactContent.cv.download}
             target="_blank"
+            rel="noopener noreferrer"
             className="underline hover:opacity-70"
           >
             {contactContent.cv.label}

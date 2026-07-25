@@ -96,7 +96,6 @@ export const dockSocialLinks: DockSocialLink[] = [
     href: mediaContent.documents.cv.href,
     label: "Resume",
     icon: "file",
-    download: mediaContent.documents.cv.download,
   },
   {
     href: "https://wa.me/+6287716632356",

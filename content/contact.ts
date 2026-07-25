@@ -12,9 +12,8 @@ export const contactContent = {
     href: "#",
   },
   cv: {
-    label: "download cv",
+    label: "view cv",
     href: mediaContent.documents.cv.href,
-    download: mediaContent.documents.cv.download,
   },
   nameLines: ["Rifqis Sakha", "Hilmi Aziz"],
   email: {
